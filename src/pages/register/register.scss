@@ -1,14 +1,9 @@
-page-home{
-
-    .login-page {
+page-register {
+    .register-page {
         background-color: black;
     }
-    
-    .socialMediaLogin{
-        color:white;
-    }
-    
-    #logButton{
+
+    #regButton{
         background-color: #e20714;
     }
     
@@ -24,15 +19,4 @@ page-home{
         background-color: black;
         color: white;
     }
-
-    #regText{
-        color:white;
-    }
-
-    #regText>a{
-        cursor: pointer;
-    }
 }
-
-
-

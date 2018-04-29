@@ -1,10 +1,16 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
-    
+
+
 </ion-header>
 
-<ion-content padding class="login-page">
-  <img src="../../assets/imgs/il-capo-logo.png" alt="">
 
+<ion-content padding class="register-page">
   <div class="loginForm">
     <ion-list>
 
@@ -20,13 +26,10 @@
     
     </ion-list>
     <div padding>
-      <button ion-button block id="logButton" (click)="signIn()">Ingresar</button>
-    </div>
-    <div padding id="regText">
-      ¿No tienes cuenta de usuario? <a (click)="goRegister()">Registrate</a> o ingrese con sus redes sociales
+      <button ion-button block id="regButton" (click)="register()">Registrar</button>
     </div>
   </div>
-  <div class="socialMediaLogin" margin>
-    
+  <div padding>
+    <button ion-button block id="regButton" (click)= "back()">Atras</button>
   </div>
 </ion-content>
