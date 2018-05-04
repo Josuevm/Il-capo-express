@@ -14,6 +14,7 @@ import { HomePage } from '../pages/home/home';
 import { UserPage } from '../pages/user/user';
 import { RegisterPage } from '../pages/register/register';
 import { MenuPage } from '../pages/menu/menu';
+import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MenuPage } from '../pages/menu/menu';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ErrorHandlerProvider
   ]
 })
 export class AppModule {}

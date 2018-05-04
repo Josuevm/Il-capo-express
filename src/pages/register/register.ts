@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import {HomePage} from '../home/home';
+import { MenuPage } from '../menu/menu';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
 
 /**
  * Generated class for the RegisterPage page.
@@ -20,7 +22,11 @@ export class RegisterPage {
   @ViewChild('email') email;
   @ViewChild('password') password;
 
-  constructor(private alertCtrl: AlertController,private fire: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private alertCtrl: AlertController,
+    private fire: AngularFireAuth,
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public errorHdlr: ErrorHandlerProvider) {
   }
 
   alert(message:string){ //This is just for test
@@ -42,10 +48,11 @@ export class RegisterPage {
   register(){
     this.fire.auth.createUserWithEmailAndPassword(this.email.value,this.password.value)
     .then(data =>{
-      this.alert("Registrado con exito")
+      this.alert("Registrado con exito");
+      this.navCtrl.push(MenuPage);
     })
     .catch(error =>{
-      this.alert(error.message)
+      this.alert(this.errorHdlr.handleError(error.message));
     })
   }
 
