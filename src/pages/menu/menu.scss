@@ -1,5 +1,33 @@
 
 
-.nav{
-    background-color: red;
+
+.card-content{
+    padding: 0px 16px;
+    max-height: 0px;
+    background-color:#e20714;   
+}
+ion-header{
+    background-color:#e20714;      
+}
+ion-title{
+text-align :     center; 
+}
+
+.toolbar-title-md{
+    color: white;
+    font-family: roboto;
+}
+.toolbar-title-ios{
+    color: white;
+    font-family: roboto;
+}
+.toolbar-background {
+    background:#e20714;
+  }
+  ion-card-content{
+    background:#e20714;    
+  }
+  
+  #menuButton{
+    background-color: #e20714;   
 }

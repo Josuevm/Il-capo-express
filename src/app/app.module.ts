@@ -15,14 +15,18 @@ import { UserPage } from '../pages/user/user';
 import { RegisterPage } from '../pages/register/register';
 import { MenuPage } from '../pages/menu/menu';
 import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
-
+import{HttpModule} from '@angular/http'
+import {AccordionComponent} from '../components/accordion/accordion';
+import {NavbarComponent} from '../components/navbar/navbar';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     UserPage,
     RegisterPage,
-    MenuPage
+    MenuPage, 
+    AccordionComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule // imports firebase/storage only needed for storage features
+    AngularFireStorageModule, // imports firebase/storage only needed for storage features
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
