@@ -1,0 +1,21 @@
+<!--
+  Generated template for the ProductModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-content class="modalContainer" padding>
+  <ion-navbar class="modalNav">
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons end> 
+
+      <button ion-button (click)="closeModal()" class="buttonClose" >X</button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-row>
+    {{information}}
+  </ion-row>
+</ion-content>

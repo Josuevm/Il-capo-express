@@ -18,21 +18,42 @@
 </navbar>
 <ion-card >
   <ion-card-content [hidden]="!flag" #cc>
-      <accordion *ngFor ="let information of information" [title]="information.name" (click)="setContent(information.children,information.name) "> 
+      <accordion *ngFor ="let item of items" [title]="item.category" (click)="setContent(item.products,item.category) "> 
          </accordion>   
   </ion-card-content>
 </ion-card>
+
   <!--use the accordion element to set the tittle-->
   <!--set the content of the pizzas from the variable information to the content variable with setContent-->
 </ion-header>
 <!--set the content in the menu -->
-<ion-content padding>
-    <ion-list *ngFor="let content of childrenContent" >
-          <ion-list>
-                <ion-item>
-                {{content?.name}}
-                </ion-item>
-                {{content?.information}}
-          </ion-list>
-      </ion-list> 
+<ion-content padding class="menuContainer">
+  <ion-list>
+    <ion-grid *ngFor="let item of categoryItems" ion-item class="productsContainer">
+      <ion-row row-12> 
+        <ion-col col-4>
+            <img src="../assets/imgs/pizza.png" alt="">
+        </ion-col>
+        <ion-col col-8>
+          <ion-row>
+            {{item.name}}
+          </ion-row>
+          <ion-row>
+              <ion-col>P {{item.price[0]}}</ion-col>
+              <ion-col>M {{item.price[1]}}</ion-col>
+              <ion-col>G {{item.price[2]}}</ion-col>
+          </ion-row>
+          <ion-row>
+              {{item.description}}
+          </ion-row>
+          <ion-row>
+              <ion-col col-3 offset-3>
+                  <button ion-button round class="addButton" (click)="openModal(item)">Agregar</button>
+              </ion-col>
+             
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
 </ion-content>

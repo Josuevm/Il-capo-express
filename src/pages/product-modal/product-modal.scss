@@ -1,0 +1,43 @@
+page-product-modal {
+   
+}
+.buttonClose{
+    background-color:#fe1a00;
+	-moz-border-radius:42px;
+	-webkit-border-radius:42px;
+	border-radius:42px;
+	border:3px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+    padding: 7px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+    
+}
+
+.modalNav{
+    border-bottom:  2px solid white;
+    border-radius: 8px;
+    margin-bottom: 2vh;
+}
+
+.toolbar-background {
+    background-color: black;
+}
+
+
+//oculta scrollbar de toda la app OJO! si permite el scroll
+.scroll-content {
+    overflow-y: auto !important;
+ }
+
+.modalContainer{
+    border: 2px solid white;
+    color: white;
+    background-color: black;
+    border-radius: 25px;
+}

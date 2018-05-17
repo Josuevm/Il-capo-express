@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AccordionComponent } from './accordion/accordion';
 import { NavbarComponent } from './navbar/navbar';
+
 @NgModule({
 	declarations: [AccordionComponent,
     NavbarComponent],
