@@ -24,7 +24,7 @@ export class HomePage {
 
       firebase.auth().onAuthStateChanged( user => {
         if (user) {
-          console.log(user);
+          console.log(user.displayName);
           this.userProfile = user;
           this.navCtrl.push(MenuPage);
         } else {
@@ -89,7 +89,7 @@ export class HomePage {
               let token = result.credential.accessToken;
               let user = result.user;
               console.log(token, user)
-              this.navCtrl.push(MenuPage);
+              //this.navCtrl.push(MenuPage);
               this.ref.detectChanges();
           })
       })

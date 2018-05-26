@@ -14,10 +14,13 @@ import { HomePage } from '../pages/home/home';
 import { UserPage } from '../pages/user/user';
 import { RegisterPage } from '../pages/register/register';
 import { MenuPage } from '../pages/menu/menu';
+import { AccountManagerPage } from '../pages/account-manager/account-manager'
+import { UserPopoverComponent } from '../components/user-popover/user-popover'
 import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
 import{HttpModule} from '@angular/http'
 import {AccordionComponent} from '../components/accordion/accordion';
 import {NavbarComponent} from '../components/navbar/navbar';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -26,7 +29,9 @@ import {NavbarComponent} from '../components/navbar/navbar';
     RegisterPage,
     MenuPage, 
     AccordionComponent,
-    NavbarComponent
+    NavbarComponent,
+    UserPopoverComponent,
+    AccountManagerPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,9 @@ import {NavbarComponent} from '../components/navbar/navbar';
     HomePage,
     UserPage,
     RegisterPage,
-    MenuPage
+    MenuPage,
+    UserPopoverComponent,
+    AccountManagerPage
   ],
   providers: [
     StatusBar,

@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, Renderer } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Http } from '@angular/http';
 
 import {ModalController} from 'ionic-angular'
+import { UserPopoverComponent } from '../../components/user-popover/user-popover'
 /**
  * Generated class for the MenuPage page.
  *
@@ -60,7 +61,8 @@ export class MenuPage {
   icon: string = "arrow-forward";
   accordionExpanded = false;
   //subscribe to the json to get the menu.
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fire: AngularFireAuth, private http: Http,
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public fire: AngularFireAuth, private http: Http, public popoverCtrl : PopoverController,
      public renderer: Renderer, private productModal: ModalController) {
 
     this.http.get('https://jsonplaceholder.typicode.com/users').subscribe((data) => {
@@ -113,6 +115,13 @@ export class MenuPage {
    
     const productModal =  this.productModal.create('ProductModalPage',{data: product});
     productModal.present();
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(UserPopoverComponent);
+    popover.present({
+      ev: myEvent
+    });
   }
 
 }
