@@ -20,6 +20,7 @@ import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
 import{HttpModule} from '@angular/http'
 import {AccordionComponent} from '../components/accordion/accordion';
 import {NavbarComponent} from '../components/navbar/navbar';
+import { FirestoreMethodsProvider } from '../providers/firestore-methods/firestore-methods';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {NavbarComponent} from '../components/navbar/navbar';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ErrorHandlerProvider
+    ErrorHandlerProvider,
+    FirestoreMethodsProvider
   ]
 })
 export class AppModule {}

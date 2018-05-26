@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AccountManagerPage } from '../../pages/account-manager/account-manager'
+import { AngularFireAuth } from 'angularfire2/auth';
+import { HomePage } from '../../pages/home/home';
 /**
  * Generated class for the UserPopoverComponent component.
  *
@@ -14,11 +16,16 @@ import { AccountManagerPage } from '../../pages/account-manager/account-manager'
 export class UserPopoverComponent {
 
 
-  constructor(public navCtrl : NavController) {
-  }
+  constructor(public navCtrl : NavController,
+    private fire: AngularFireAuth) {}
 
   manageAccount(){
     this.navCtrl.push(AccountManagerPage);
+  }
+  
+  signOut(){
+    this.fire.auth.signOut();
+    this.navCtrl.push(HomePage);
   }
 
 }

@@ -11,4 +11,28 @@ page-account-manager {
     .bar-button{
         color: white;
     }
+
+    .circle-pic{
+        width:150px;
+        height:150px;
+        -webkit-border-radius: 100%;
+        border-radius: 100%;
+    }
+
+    .inputText{
+        background-color: black;
+        color: white;
+    }
+
+    .label-md[stacked], .label-md[floating]{
+        color: white;
+    }
+    
+    .item-input-has-focus .label-md[floating], .input-has-focus .label-md[floating]{
+        color: white; //label color when focusing
+    }
+
+    .accInfoBtn{
+        background-color: #e20714;
+    }
 }

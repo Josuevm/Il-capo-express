@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
+import { FirestoreMethodsProvider } from '../../providers/firestore-methods/firestore-methods'
+
 
 /**
  * Generated class for the AccountManagerPage page.
@@ -16,28 +18,52 @@ import firebase from 'firebase';
 })
 export class AccountManagerPage {
 
+  @ViewChild('name') name;
+  @ViewChild('telephone') telephone;
+  @ViewChild('address') address;
+
   loggedUser = {
+    photo: "",
     name : "",
-    address : ""
+    address : "",
+    telephone : ""
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userUID : string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  public firestore: FirestoreMethodsProvider) {
 
     firebase.auth().onAuthStateChanged( user => {
-      if (user) {
         console.log(user.displayName)
-        this.loggedUser.name = user.displayName;
-      } else {
-        console.log("There's no user here");
-      }
+        this.loggedUser.photo = user.photoURL + "?type=large";
+        this.userUID = user.uid;
+        this.setUserData(this.userUID);
     });
-
   }
 
-  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountManagerPage');
+  }
+
+  setUserData(userUID){
+    this.firestore.getDocumentData('Users', userUID)
+    .then(doc =>{
+      this.loggedUser.name = doc.data().name;
+      this.loggedUser.address = doc.data().address;
+      this.loggedUser.telephone = doc.data().telephone;
+    })
+    
+  }
+
+  submit(){
+    let data ={
+      name : this.name.value,
+      address: this.address.value,
+      telephone:this.telephone.value
+    }
+    this.firestore.updateDocument('Users',this.userUID,data);
   }
 
 }

@@ -24,7 +24,7 @@ export class HomePage {
 
       firebase.auth().onAuthStateChanged( user => {
         if (user) {
-          console.log(user.displayName);
+          console.log(user);
           this.userProfile = user;
           this.navCtrl.push(MenuPage);
         } else {
