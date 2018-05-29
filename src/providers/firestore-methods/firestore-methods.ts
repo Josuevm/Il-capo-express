@@ -13,6 +13,7 @@ export class FirestoreMethodsProvider {
   db = firebase.firestore();
 
   constructor() {
+    
   }
 
   getDocumentData(collection, doc) {
@@ -21,11 +22,28 @@ export class FirestoreMethodsProvider {
   }
 
   setDocumentData(collection, docName, data){
-    this.db.collection(collection).doc(docName).set(data);
+    this.db.collection(collection).doc(docName).set(data).then(function() {
+      console.log("Document successfully written!");
+  })
+  .catch(function(error) {
+      console.error("Error writing document: ", error);
+  });
+  
   }
 
   updateDocument(collection, docName, data){
     this.db.collection(collection).doc(docName).update( data );
+  }
+
+  insertIfNotExists(collection, document, data){
+    var self = this;
+   this.db.collection(collection).doc(document).get()
+    .then(function(documentSnapshot){
+      if(!documentSnapshot.exists){
+        self.db.collection(collection).doc(document).set(data)
+        console.log('First time')
+      }
+    });
   }
 
 }

@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
 import { FirestoreMethodsProvider } from '../../providers/firestore-methods/firestore-methods'
 
-
 /**
  * Generated class for the AccountManagerPage page.
  *
@@ -36,7 +35,12 @@ export class AccountManagerPage {
 
     firebase.auth().onAuthStateChanged( user => {
         console.log(user.displayName)
-        this.loggedUser.photo = user.photoURL + "?type=large";
+        if(!user.photoURL){
+          this.loggedUser.photo = '../../assets/imgs/defaultphoto.png'
+        }else{
+          this.loggedUser.photo = user.photoURL + "?type=large";
+        }
+        
         this.userUID = user.uid;
         this.setUserData(this.userUID);
     });
