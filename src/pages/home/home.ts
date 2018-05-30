@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { MenuPage } from '../menu/menu';
 import firebase from 'firebase';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
+import { DatabaseMethodsProvider } from '../../providers/database-methods/database-methods';
 
 @Component({
   selector: 'page-home',
@@ -12,7 +13,7 @@ import { ErrorHandlerProvider } from '../../providers/error-handler/error-handle
 })
 
 export class HomePage {
-  public userProfile:any = null;
+  public userProfile: any = null;
   @ViewChild('email') email;
   @ViewChild('password') password;
 
@@ -20,18 +21,20 @@ export class HomePage {
     private fire: AngularFireAuth,
     public navCtrl: NavController,
     public errorHdlr: ErrorHandlerProvider,
-    public ref : ChangeDetectorRef) {
+    public ref: ChangeDetectorRef,
+    public db: DatabaseMethodsProvider) {
 
-      firebase.auth().onAuthStateChanged( user => {
-        if (user) {
-          console.log(user);
-          this.userProfile = user;
-          this.navCtrl.push(MenuPage);
-        } else {
-          console.log("There's no user here");
-        }
-      });
-    
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log(user);
+        this.db.insertIfDontExist('users',user.uid, {name : user.displayName});
+        this.userProfile = user;
+        this.navCtrl.push(MenuPage);
+      } else {
+        console.log("There's no user here");
+      }
+    });
+
   }
 
   alert(message: string) { //This is just for test
@@ -70,7 +73,7 @@ export class HomePage {
       })
   }
 
-  socialLogin(provider):void {
+  socialLogin(provider): void {
     let signInProv = null;
 
     switch (provider) {
@@ -86,29 +89,28 @@ export class HomePage {
       .then(() => {
         this.fire.auth.getRedirectResult()
           .then(result => {
-              let token = result.credential.accessToken;
-              let user = result.user;
-              console.log(token, user)
-              //this.navCtrl.push(MenuPage);
-              this.ref.detectChanges();
-          })
-      })
-
-  }
-
-  googleSignIn() {
-    this.fire.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-      .then(() => {
-        return this.fire.auth.getRedirectResult()
-          .then(result => {
             let token = result.credential.accessToken;
             let user = result.user;
             console.log(token, user)
-            this.alert("Loged in")
-          }).catch(err => {
-            this.alert(this.errorHdlr.handleError(err.message))
+            this.ref.detectChanges();
           })
       })
+
   }
+
+  // checkFirstSocialLogin(uid, username) {
+  //   let exists = this.firestore.documentExists('Users', uid);
+  //   console.log('Existe?', exists)
+  //   if (!exists) {
+  //     let data = {
+  //       name: username,
+  //       telephone: "",
+  //       address: " "
+  //     }
+  //     this.firestore.setDocumentData('Users', uid, data);
+  //     console.log('First social login')
+  //   }
+  // }
+
 
 }

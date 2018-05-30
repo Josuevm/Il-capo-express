@@ -25,6 +25,7 @@ import { OrderProvider } from '../providers/order/order';
 import { MenuItemsProvider } from '../providers/menu-items/menu-items';
 import { OrderPage } from '../pages/order/order';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DatabaseMethodsProvider } from '../providers/database-methods/database-methods';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FirestoreMethodsProvider,
     OrderProvider,
     MenuItemsProvider,
-    HttpClient
+    HttpClient,
+    DatabaseMethodsProvider
   ]
 })
 export class AppModule {}

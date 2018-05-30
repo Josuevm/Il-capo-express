@@ -4,7 +4,7 @@ import {HomePage} from '../home/home';
 import { MenuPage } from '../menu/menu';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
-
+import { DatabaseMethodsProvider } from '../../providers/database-methods/database-methods';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -19,14 +19,19 @@ import { ErrorHandlerProvider } from '../../providers/error-handler/error-handle
 })
 export class RegisterPage {
 
+  @ViewChild('name') name;
+  @ViewChild('telephone') telephone;
+  @ViewChild('address') address;
   @ViewChild('email') email;
   @ViewChild('password') password;
+
 
   constructor(private alertCtrl: AlertController,
     private fire: AngularFireAuth,
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public errorHdlr: ErrorHandlerProvider) {
+    public errorHdlr: ErrorHandlerProvider,
+    public db: DatabaseMethodsProvider) {
   }
 
   alert(message:string){ //This is just for test
@@ -48,10 +53,18 @@ export class RegisterPage {
   register(){
     this.fire.auth.createUserWithEmailAndPassword(this.email.value,this.password.value)
     .then(data =>{
+      console.log(data.uid);
+      let info ={
+        name: this.name.value,
+        telephone: this.telephone.value,
+        address : this.address.value
+      }
+      this.db.setDocument('users',data.uid, info);
       this.alert("Registrado con exito");
       this.navCtrl.push(MenuPage);
     })
     .catch(error =>{
+      console.log(error.message)
       this.alert(this.errorHdlr.handleError(error.message));
     })
   }
