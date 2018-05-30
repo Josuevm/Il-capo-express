@@ -6,19 +6,16 @@
 -->
 <ion-header>
   <navbar>
-    <ion-buttons center>
-      <ion-title>
-        <button id="menuButton" ion-button item-centered (click)="toggleAccordion()">
-          {{menuTittle}}
-          <ion-icon name="arrow-down" padding-left="10px"></ion-icon>
-        </button>
-      </ion-title>
-    </ion-buttons>
-    <ion-buttons right>
-        <button ion-button icon-only (click)="presentPopover($event)" clear id="user-button">
-          <ion-icon name="md-contact" id="user-icon"></ion-icon>
-        </button>
-    </ion-buttons>
+    <div class="title">
+        <ion-buttons center>
+            <ion-title>
+              <button id="menuButton" ion-button item-centered (click)="toggleAccordion()">
+                {{menuTittle}}
+                <ion-icon name="arrow-down" padding-left="10px"></ion-icon>
+              </button>
+            </ion-title>
+          </ion-buttons>
+    </div>
   </navbar>
   <ion-card>
     <ion-card-content [hidden]="!flag" #cc>
@@ -60,4 +57,7 @@
       </ion-row>
     </ion-grid>
   </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab (click)="onShowOrder()"><ion-icon name="md-bicycle"></ion-icon></button>
+  </ion-fab>
 </ion-content>

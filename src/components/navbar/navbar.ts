@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { PopoverController } from 'ionic-angular';
+import { UserPopoverComponent } from '../user-popover/user-popover';
+
 /**
  * Generated class for the NavbarComponent component.
  *
@@ -11,11 +14,14 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
-  text: string;
+  constructor(public popoverCtrl : PopoverController,) {
+  }
 
-  constructor() {
-    console.log('Hello NavbarComponent Component');
-    this.text = 'Hello World';
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(UserPopoverComponent);
+    popover.present({
+      ev: myEvent
+    });
   }
 
 }
