@@ -26,6 +26,9 @@ export class ErrorHandlerProvider {
       case 'Password should be at least 6 characters':
         errorMessage = 'Contraseña debe tener más de 6 caracteres';
       break;
+      case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+      errorMessage = 'El usuario no está registrado';
+      break;
       default:
         break;
     }

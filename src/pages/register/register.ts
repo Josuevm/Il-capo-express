@@ -4,8 +4,7 @@ import {HomePage} from '../home/home';
 import { MenuPage } from '../menu/menu';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
-import { FirestoreMethodsProvider } from '../../providers/firestore-methods/firestore-methods';
-
+import { DatabaseMethodsProvider } from '../../providers/database-methods/database-methods';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -32,7 +31,7 @@ export class RegisterPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public errorHdlr: ErrorHandlerProvider,
-    public firestore : FirestoreMethodsProvider) {
+    public db: DatabaseMethodsProvider) {
   }
 
   alert(message:string){ //This is just for test
@@ -60,7 +59,7 @@ export class RegisterPage {
         telephone: this.telephone.value,
         address : this.address.value
       }
-      this.firestore.setDocumentData('Users',data.uid, info);
+      this.db.setDocument('users',data.uid, info);
       this.alert("Registrado con exito");
       this.navCtrl.push(MenuPage);
     })

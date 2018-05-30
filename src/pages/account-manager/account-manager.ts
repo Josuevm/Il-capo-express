@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
-import { FirestoreMethodsProvider } from '../../providers/firestore-methods/firestore-methods'
+import { DatabaseMethodsProvider } from '../../providers/database-methods/database-methods';
 
 /**
  * Generated class for the AccountManagerPage page.
@@ -30,8 +30,9 @@ export class AccountManagerPage {
 
   userUID : string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public firestore: FirestoreMethodsProvider) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+  public db: DatabaseMethodsProvider) {
 
     firebase.auth().onAuthStateChanged( user => {
         console.log(user.displayName)
@@ -52,13 +53,14 @@ export class AccountManagerPage {
   }
 
   setUserData(userUID){
-    this.firestore.getDocumentData('Users', userUID)
-    .then(doc =>{
-      this.loggedUser.name = doc.data().name;
-      this.loggedUser.address = doc.data().address;
-      this.loggedUser.telephone = doc.data().telephone;
+    let self = this;
+    let doc = this.db.getDocument('users', userUID);
+    doc.on("value", function(snapshot){
+      let data =snapshot.val()
+      self.loggedUser.name = data.name;
+      self.loggedUser.address = data.address;
+      self.loggedUser.telephone = data.telephone;
     })
-    
   }
 
   submit(){
@@ -67,7 +69,7 @@ export class AccountManagerPage {
       address: this.address.value,
       telephone:this.telephone.value
     }
-    this.firestore.updateDocument('Users',this.userUID,data);
+    this.db.updateDocument('users',this.userUID,data);
   }
 
 }

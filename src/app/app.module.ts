@@ -21,6 +21,7 @@ import{HttpModule} from '@angular/http'
 import {AccordionComponent} from '../components/accordion/accordion';
 import {NavbarComponent} from '../components/navbar/navbar';
 import { FirestoreMethodsProvider } from '../providers/firestore-methods/firestore-methods';
+import { DatabaseMethodsProvider } from '../providers/database-methods/database-methods';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { FirestoreMethodsProvider } from '../providers/firestore-methods/firesto
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ErrorHandlerProvider,
-    FirestoreMethodsProvider
+    FirestoreMethodsProvider,
+    DatabaseMethodsProvider
   ]
 })
 export class AppModule {}

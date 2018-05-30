@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { MenuPage } from '../menu/menu';
 import firebase from 'firebase';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
-import { FirestoreMethodsProvider } from '../../providers/firestore-methods/firestore-methods';
+import { DatabaseMethodsProvider } from '../../providers/database-methods/database-methods';
 
 @Component({
   selector: 'page-home',
@@ -22,12 +22,12 @@ export class HomePage {
     public navCtrl: NavController,
     public errorHdlr: ErrorHandlerProvider,
     public ref: ChangeDetectorRef,
-    public firestore: FirestoreMethodsProvider) {
+    public db: DatabaseMethodsProvider) {
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         console.log(user);
-        this.firestore.insertIfNotExists('Users',user.uid, {name : user.displayName});
+        this.db.insertIfDontExist('users',user.uid, {name : user.displayName});
         this.userProfile = user;
         this.navCtrl.push(MenuPage);
       } else {
