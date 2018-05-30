@@ -8,14 +8,94 @@
 
 <ion-content class="modalContainer" padding>
   <ion-navbar class="modalNav">
-    <ion-title>{{title}}</ion-title>
-    <ion-buttons end> 
+    <ion-title>Orden</ion-title>
+    <ion-buttons end>
 
-      <button ion-button (click)="closeModal()" class="buttonClose" >X</button>
+      <button ion-button (click)="closeModal()" class="buttonClose">X</button>
     </ion-buttons>
   </ion-navbar>
 
-  <ion-row>
-    {{information}}
-  </ion-row>
+  <ion-grid>
+    <ion-row row-12>
+      <ion-col col-5>
+        {{product.name}}
+        <img src="../assets/imgs/pizza.png" alt="">
+      </ion-col>
+      <ion-col col-4 offset-1>
+        Extras
+      </ion-col>
+
+    </ion-row>
+    <ion-row row-12>
+      <ion-col col-3 class="size">
+        Tamaño:
+      </ion-col>
+
+      <ion-col col-2>
+        <button ion-button (click)="changeSize('P')" class="buttonSize" [class.active]="'P' === selectedSize">P</button>
+      </ion-col>
+
+      <ion-col col-2>
+        <button ion-button (click)="changeSize('M')" class="buttonSize" [class.active]="'M' === selectedSize">M</button>
+      </ion-col>
+
+      <ion-col col-2>
+        <button ion-button (click)="changeSize('G')" class="buttonSize" [class.active]="'G' === selectedSize">G</button>
+      </ion-col>
+
+      <ion-col col-3 class="size">
+        ₡ {{this.product.price}}
+      </ion-col>
+
+
+    </ion-row>
+
+    <ion-row row-12>
+      <ion-col col-6>
+        Observaciones:
+      </ion-col>
+      <ion-col col-4 offset-2 class="quantity">
+        Cantidad
+      </ion-col>
+    </ion-row>
+
+    <ion-row row-12>
+      <ion-col col-6 class="textAreaContainer">
+        <textarea placeholder="..."></textarea>
+      </ion-col>
+
+      <ion-col col-1 offset-2>
+        <button ion-button (click)="changeQuantity(0)" class="buttonQuantity ">-</button>
+      </ion-col>
+      <ion-col col-1 offset-1 class="size">
+          {{this.product.quantity}}
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button (click)="changeQuantity(1)" class="buttonQuantity">+</button>
+      </ion-col>
+
+
+    </ion-row>
+
+
+    <ion-row row-12>
+      <ion-col col-8>
+        <button ion-button round class="addProductButton" (click)="openModal(item)">
+          << Agregar y continuar agregando</button>
+      </ion-col>
+      <ion-col col-3 offset-1>
+        <button ion-button (click)="closeModal()" class="buttonOrder">
+          <img src="../assets/imgs/transport.png" alt="">
+        </button>
+      </ion-col>
+
+    </ion-row>
+
+
+
+
+
+
+  </ion-grid>
+
 </ion-content>

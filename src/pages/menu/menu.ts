@@ -112,7 +112,6 @@ export class MenuPage {
   }
 
   openModal(product){
-   
     const productModal =  this.productModal.create('ProductModalPage',{data: product});
     productModal.present();
   }
