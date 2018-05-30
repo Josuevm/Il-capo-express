@@ -17,10 +17,14 @@ import { MenuPage } from '../pages/menu/menu';
 import { AccountManagerPage } from '../pages/account-manager/account-manager'
 import { UserPopoverComponent } from '../components/user-popover/user-popover'
 import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
-import{HttpModule} from '@angular/http'
+import {HttpModule} from '@angular/http'
 import {AccordionComponent} from '../components/accordion/accordion';
 import {NavbarComponent} from '../components/navbar/navbar';
 import { FirestoreMethodsProvider } from '../providers/firestore-methods/firestore-methods';
+import { OrderProvider } from '../providers/order/order';
+import { MenuItemsProvider } from '../providers/menu-items/menu-items';
+import { OrderPage } from '../pages/order/order';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { FirestoreMethodsProvider } from '../providers/firestore-methods/firesto
     AccordionComponent,
     NavbarComponent,
     UserPopoverComponent,
-    AccountManagerPage
+    AccountManagerPage,
+    OrderPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import { FirestoreMethodsProvider } from '../providers/firestore-methods/firesto
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,14 +57,18 @@ import { FirestoreMethodsProvider } from '../providers/firestore-methods/firesto
     RegisterPage,
     MenuPage,
     UserPopoverComponent,
-    AccountManagerPage
+    AccountManagerPage,
+    OrderPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ErrorHandlerProvider,
-    FirestoreMethodsProvider
+    FirestoreMethodsProvider,
+    OrderProvider,
+    MenuItemsProvider,
+    HttpClient
   ]
 })
 export class AppModule {}

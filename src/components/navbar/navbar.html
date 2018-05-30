@@ -1,8 +1,16 @@
-<ion-navbar background-color="danger"     hideBackButton #nav>
-    <ion-buttons left>
-    <img margin-top="30px" margin-left="10px" item-centered src="../../assets/imgs/il-capo-logo.png" alt="" height="50" width="50">
+<ion-navbar background-color="primary"     hideBackButton #nav>
+ <ion-buttons left>
+      <img margin-top="30px" margin-left="10px" item-centered src="../../assets/imgs/il-capo-logo.png" alt="" height="50" width="50">
   </ion-buttons>
-  <ng-content></ng-content>
-<ion-buttons right>
-</ion-buttons>
+    
+  <ng-content class="title"></ng-content>
+
+  <ion-buttons right>
+    <button ion-button icon-only  id="notification-button">
+        <ion-icon name="notifications" color="secondary"></ion-icon>
+    </button>
+    <button ion-button icon-only (click)="presentPopover($event)"  id="user-button">
+        <ion-icon name="md-contact" id="user-icon"></ion-icon>
+    </button>
+  </ion-buttons>
 </ion-navbar>
