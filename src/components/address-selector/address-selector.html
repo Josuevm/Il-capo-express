@@ -1,0 +1,16 @@
+
+<ion-label stacked="" class="label label-md" id="addressLbl">Dirección</ion-label>
+<ion-searchbar [(ngModel)]="query" (ionInput)="searchPlace()" (click)="searchPlace()"></ion-searchbar>
+
+<ion-list>
+  <ion-item id="place-list" *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
+</ion-list>
+
+<ion-content id="map-content">
+  <div #pleaseConnect id="please-connect">
+    <p>Please connect to the Internet...</p>
+  </div>
+  <div #map id="map">
+    <ion-spinner></ion-spinner>
+  </div>
+</ion-content>

@@ -98,19 +98,5 @@ export class HomePage {
 
   }
 
-  // checkFirstSocialLogin(uid, username) {
-  //   let exists = this.firestore.documentExists('Users', uid);
-  //   console.log('Existe?', exists)
-  //   if (!exists) {
-  //     let data = {
-  //       name: username,
-  //       telephone: "",
-  //       address: " "
-  //     }
-  //     this.firestore.setDocumentData('Users', uid, data);
-  //     console.log('First social login')
-  //   }
-  // }
-
 
 }

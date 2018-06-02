@@ -8,6 +8,9 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environment/environment';
+import { Network } from '@ionic-native/network';
+import { Geolocation } from '@ionic-native/geolocation';
+import {} from '@types/googlemaps';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -26,6 +29,9 @@ import { MenuItemsProvider } from '../providers/menu-items/menu-items';
 import { OrderPage } from '../pages/order/order';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DatabaseMethodsProvider } from '../providers/database-methods/database-methods';
+import { MapsConectivityProvider } from '../providers/maps-conectivity/maps-conectivity';
+import { GoogleMapsProvider } from '../providers/google-maps/google-maps';
+import { AddressSelectorComponent } from '../components/address-selector/address-selector'
 
 @NgModule({
   declarations: [
@@ -38,7 +44,8 @@ import { DatabaseMethodsProvider } from '../providers/database-methods/database-
     NavbarComponent,
     UserPopoverComponent,
     AccountManagerPage,
-    OrderPage
+    OrderPage,
+    AddressSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,8 @@ import { DatabaseMethodsProvider } from '../providers/database-methods/database-
     MenuPage,
     UserPopoverComponent,
     AccountManagerPage,
-    OrderPage
+    OrderPage,
+    AddressSelectorComponent
   ],
   providers: [
     StatusBar,
@@ -70,7 +78,11 @@ import { DatabaseMethodsProvider } from '../providers/database-methods/database-
     OrderProvider,
     MenuItemsProvider,
     HttpClient,
-    DatabaseMethodsProvider
+    DatabaseMethodsProvider,
+    MapsConectivityProvider,
+    GoogleMapsProvider,
+    Network,
+    Geolocation
   ]
 })
 export class AppModule {}

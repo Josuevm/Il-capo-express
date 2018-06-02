@@ -18,28 +18,26 @@
         <ion-row>
           <ion-col col-3></ion-col>
           <ion-col>
-              <img class="circle-pic" 
-              src="{{loggedUser.photo}}" />
+            <img class="circle-pic" src="{{loggedUser.photo}}" />
           </ion-col>
         </ion-row>
-          <ion-list>
-              <ion-item class="inputText">
-                <ion-label stacked>Nombre</ion-label>
-                <ion-input type="text" value="{{loggedUser.name}}" #name></ion-input>
-              </ion-item>
-              <ion-item class="inputText">
-                  <ion-label stacked>Telefono</ion-label>
-                  <ion-input type="text" value="{{loggedUser.telephone}}" #telephone></ion-input>
-                </ion-item>
-              <ion-item class="inputText">
-                <ion-label stacked>Dirección</ion-label>
-                <ion-input type="text" value="{{loggedUser.address}}" #address></ion-input>
-              </ion-item>
-              <div padding>
-                  <button ion-button block class="accInfoBtn" (click)="submit()">Aceptar</button>
-              </div>
-            </ion-list>
-      </ion-col> 
+        <ion-list>
+          <ion-item class="inputText">
+            <ion-label stacked>Nombre</ion-label>
+            <ion-input type="text" value="{{loggedUser.name}}" #name></ion-input>
+          </ion-item>
+          <ion-item class="inputText">
+            <ion-label stacked>Telefono</ion-label>
+            <ion-input type="text" value="{{loggedUser.telephone}}" #telephone></ion-input>
+          </ion-item>
+        </ion-list>
+
+        <address-selector (addressChanged)="setAddress($event)"></address-selector>
+
+        <div padding>
+          <button ion-button block class="accInfoBtn" (click)="submit()">Aceptar</button>
+        </div>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
