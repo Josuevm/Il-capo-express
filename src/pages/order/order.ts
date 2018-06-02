@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { OrderProvider } from "../../providers/order/order";
-
+import { ModalController } from 'ionic-angular';
+import {AddressModalComponent} from '../../components/address-modal/address-modal'
 /**
  * Generated class for the OrderPage page.
  *
@@ -19,7 +20,8 @@ export class OrderPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public orderProv: OrderProvider,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    private addressModal: ModalController) {
   }
 
   public orderItems;
@@ -59,25 +61,9 @@ export class OrderPage {
   }
 
   onOrder() {
-    let prompt = this.alertCtrl.create({
-      title: 'Ordenar',
-      message: "Enviaremos su pedido a la ubicacion predeterminada",
-      inputs: [
-        {
-          name: 'Ubicacion',
-          placeholder: 'Ubicacion'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Confirmar',
-          handler: data => {
-            this.orderProv.sendOrder();
-          }
-        }
-      ]
-    });
-    prompt.present();
+    //Se le debe pasar un data que contenga el objeto o array de alimentos
+  const addressModal = this.addressModal.create(AddressModalComponent);
+  addressModal.present();
   }
 
 }

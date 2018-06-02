@@ -165,7 +165,6 @@ export class GoogleMapsProvider {
       animation: google.maps.Animation.DROP,
       position: latLng
     });
-    console.log(this)
     let self = this;
     this.marker.addListener('dragend', function(e){self.setCurrentPosition(e,self)});
   }

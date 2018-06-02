@@ -1,0 +1,26 @@
+<!-- Generated template for the AddressModalComponent component -->
+<ion-content class="modalContainer" padding>
+  <ion-navbar class="modalNav">
+    <ion-title>Orden</ion-title>
+    <ion-buttons end>
+
+      <button ion-button (click)="closeModal()" class="buttonClose">X</button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        Su pedido será enviado a la dirección predeterminada, puede modificarla si lo desea
+
+        <address-selector (addressChanged)="setAddress($event)"></address-selector>
+
+        <div padding>
+          <button ion-button block class="accInfoBtn" (click)="submit()">Confirmar</button>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

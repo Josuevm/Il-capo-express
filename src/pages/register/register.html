@@ -23,11 +23,6 @@
         <ion-label floating>Telefono</ion-label>
         <ion-input type="text" #telephone></ion-input>
       </ion-item>
-
-      <ion-item id="inputText">
-        <ion-label floating>Dirección</ion-label>
-        <ion-input type="text" #address></ion-input>
-      </ion-item>
       
       <ion-item id="inputText">
         <ion-label floating>E-mail</ion-label>
@@ -40,11 +35,15 @@
       </ion-item>
     
     </ion-list>
-    <div padding>
-      <button ion-button block id="regButton" (click)="register()">Registrar</button>
-    </div>
+
+  </div>
+  <address-selector (addressChanged)="setAddress($event)"></address-selector>
+  <div padding>
+    <button ion-button block id="regButton" (click)="register()">Registrar</button>
   </div>
   <div padding>
     <button ion-button block id="regButton" (click)= "back()">Atras</button>
   </div>
 </ion-content>
+
+

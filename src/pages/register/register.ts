@@ -21,9 +21,10 @@ export class RegisterPage {
 
   @ViewChild('name') name;
   @ViewChild('telephone') telephone;
-  @ViewChild('address') address;
   @ViewChild('email') email;
   @ViewChild('password') password;
+
+  selectedAddress : any;
 
 
   constructor(private alertCtrl: AlertController,
@@ -53,11 +54,10 @@ export class RegisterPage {
   register(){
     this.fire.auth.createUserWithEmailAndPassword(this.email.value,this.password.value)
     .then(data =>{
-      console.log(data.uid);
       let info ={
         name: this.name.value,
         telephone: this.telephone.value,
-        address : this.address.value
+        address : this.selectedAddress
       }
       this.db.setDocument('users',data.uid, info);
       this.alert("Registrado con exito");
@@ -67,6 +67,10 @@ export class RegisterPage {
       console.log(error.message)
       this.alert(this.errorHdlr.handleError(error.message));
     })
+  }
+
+  setAddress(address){
+    this.selectedAddress = address;
   }
 
 }

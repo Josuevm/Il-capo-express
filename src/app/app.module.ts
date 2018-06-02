@@ -32,6 +32,7 @@ import { DatabaseMethodsProvider } from '../providers/database-methods/database-
 import { MapsConectivityProvider } from '../providers/maps-conectivity/maps-conectivity';
 import { GoogleMapsProvider } from '../providers/google-maps/google-maps';
 import { AddressSelectorComponent } from '../components/address-selector/address-selector'
+import {AddressModalComponent} from '../components/address-modal/address-modal'
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AddressSelectorComponent } from '../components/address-selector/address
     UserPopoverComponent,
     AccountManagerPage,
     OrderPage,
-    AddressSelectorComponent
+    AddressSelectorComponent,
+    AddressModalComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ import { AddressSelectorComponent } from '../components/address-selector/address
     UserPopoverComponent,
     AccountManagerPage,
     OrderPage,
-    AddressSelectorComponent
+    AddressSelectorComponent,
+    AddressModalComponent
   ],
   providers: [
     StatusBar,

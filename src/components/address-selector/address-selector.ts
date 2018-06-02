@@ -53,9 +53,11 @@ export class AddressSelectorComponent {
     public geolocation: Geolocation) {
 
     firebase.auth().onAuthStateChanged(user => {
-      this.userUID = user.uid;
-      this.getUserCoordinates();
-
+      if(user){
+        this.userUID = user.uid;
+        this.getUserCoordinates();
+      }
+      
       let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
         this.autocompleteService = new google.maps.places.AutocompleteService();
         this.placesService = new google.maps.places.PlacesService(this.maps.map);
@@ -77,7 +79,9 @@ export class AddressSelectorComponent {
 
     let position: any;
     if (!(typeof this.loggedUser.address === "undefined")
-      && !(typeof this.loggedUser.address.position === "undefined")) {
+      && !(typeof this.loggedUser.address.position === "undefined")
+    &&!(this.loggedUser.name === "")) {
+        console.log("entra a este if")
       position = {
         lat: this.loggedUser.address.position.lat,
         lng: this.loggedUser.address.position.lng
@@ -115,6 +119,7 @@ export class AddressSelectorComponent {
         this.markerPosition = { lat: location.lat, lng: location.lng };
         this.location = location;
         this.query = details.formatted_address;
+        this.addressChange(this.maps.marker.position);
       });
     });
   }
