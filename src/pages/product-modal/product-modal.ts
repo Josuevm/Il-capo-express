@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavParams, ViewController } from 'ionic-angular';
+import { OrderProvider } from "../../providers/order/order";
 
 /**
  * Generated class for the ProductModalPage page.
@@ -44,7 +45,7 @@ export class ProductModalPage {
     extras: []
   }
 
-  constructor(private navParams: NavParams, private view: ViewController) {
+  constructor(private navParams: NavParams, public orderProv: OrderProvider, private view: ViewController) {
 
   }
 
@@ -124,6 +125,7 @@ export class ProductModalPage {
   addProduct() {
     this.product.observation = this.observation.value;
     console.log(this.product);
+    this.orderProv.addItem(this.product);
   }
 
 }
