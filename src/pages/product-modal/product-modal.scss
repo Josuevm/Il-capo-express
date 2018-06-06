@@ -2,6 +2,32 @@ page-product-modal {
    
 }
 
+
+.extraButton.active {
+    border-radius: 22%;
+    /* border: 2px solid #ffffff; */
+    border: 0.5vw dashed #fe1a00;
+}
+
+.extraButton{
+    background-color: black;
+
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    height: 85%;
+    padding: 0px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #b23e35;
+}
+
+.extraImg{
+    width: 100%;
+}
+
 .buttonClose{
     background-color:#fe1a00;
 	-moz-border-radius:42px;
@@ -37,7 +63,7 @@ page-product-modal {
 }
 
 
-.active{
+.buttonSize.active{
     background-color: #e20714;
     border-radius: 100%;
     border: 2px solid #ffffff;
@@ -118,6 +144,7 @@ page-product-modal {
 }
 .textAreaContainer{
     color:black;
+    background-color: white;
 }
 
 .modalNav{
