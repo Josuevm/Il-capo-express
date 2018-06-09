@@ -1,7 +1,6 @@
 
 <ion-label stacked="" class="label label-md" id="addressLbl">Dirección</ion-label>
 <ion-searchbar [(ngModel)]="query" (ionInput)="searchPlace()" (click)="searchPlace()"></ion-searchbar>
-
 <ion-list>
   <ion-item id="place-list" *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
 </ion-list>
@@ -14,3 +13,7 @@
     <ion-spinner></ion-spinner>
   </div>
 </ion-content>
+<ion-item id="inputText">
+  <ion-label floating>Otras señas:</ion-label>
+  <ion-input type="text" [(ngModel)]="signs" (change)="refreshInput()"></ion-input>
+</ion-item>

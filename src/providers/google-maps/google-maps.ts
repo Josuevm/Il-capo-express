@@ -40,7 +40,7 @@ export class GoogleMapsProvider {
   constructor(public connectivityService: MapsConectivityProvider,
     public geolocation: Geolocation,
     public db: DatabaseMethodsProvider) {
-      this.getUserOrDefaultLocation();
+      // this.getUserOrDefaultLocation();
       this.self = this;
      }
 
@@ -102,8 +102,10 @@ export class GoogleMapsProvider {
               Number(self.loggedUser.address.position.lng));
           })
         } else {
-          self.latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        }
+          if(google){
+            self.latLng = new google.maps.LatLng(10.0739464, -84.31475720000003);
+          }
+          }
       });
     });
   }
@@ -120,6 +122,7 @@ export class GoogleMapsProvider {
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         this.map = new google.maps.Map(this.mapElement, mapOptions);
+        this.getUserOrDefaultLocation()
         resolve(true);
         this.initMarker(self.latLng);
     });

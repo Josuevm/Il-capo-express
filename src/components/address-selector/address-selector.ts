@@ -18,6 +18,7 @@ export class AddressSelectorComponent {
 
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('pleaseConnect') pleaseConnect: ElementRef;
+  
 
   @Output() addressChanged = new EventEmitter;
 
@@ -40,11 +41,13 @@ export class AddressSelectorComponent {
       location: "",
       position: {
         lat: "", lng: ""
-      }
+      },
+      otherSigns: ""
     },
     telephone: ""
   }
   userUID: any;
+  signs : string = "";
 
   constructor(public db: DatabaseMethodsProvider,
     public zone: NgZone,
@@ -90,10 +93,11 @@ export class AddressSelectorComponent {
       this.maps.setMarker(position)
       this.markerPosition = position;
       this.query = this.loggedUser.address.location;
+      this.signs = this.loggedUser.address.otherSigns;
       this.addressChange(this.maps.marker.position);
     }else{
       this.geolocation.getCurrentPosition().then((pos) => {
-      position = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+      position = new google.maps.LatLng(10.0739464, -84.31475720000003);
       this.maps.map.setCenter(position)
       this.maps.setMarker(position)
       this.markerPosition = position;
@@ -163,10 +167,15 @@ export class AddressSelectorComponent {
       position: {
         lat: position.lat(),
         lng: position.lng()
-      }
+      },
+      otherSigns: this.signs
     }
 
     this.addressChanged.emit(address);
+  }
+
+  refreshInput(){
+    this.addressChange(this.maps.marker.position);
   }
 
 }

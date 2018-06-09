@@ -27,7 +27,10 @@ export class ErrorHandlerProvider {
         errorMessage = 'Contraseña debe tener más de 6 caracteres';
       break;
       case 'There is no user record corresponding to this identifier. The user may have been deleted.':
-      errorMessage = 'El usuario no está registrado';
+        errorMessage = 'El usuario no está registrado';
+      break;
+      case 'The email address is already in use by another account.':
+        errorMessage = 'Este correo ya se encuentra registrado';
       break;
       default:
         break;
