@@ -64,13 +64,15 @@ export class OrderProvider {
      * sendOrder
      */
     public async sendOrder(callBack: Function, anotherAddress?: Address) {
+      let reference = this.db.ref('orders/').push();
       let order:Order =  {
+        id: reference.key,
         products: this.products,
         UID: this.UID,
         anotherAddress: anotherAddress,
         photoURL: this.photoURL,
         state: 'new'
       };
-      this.db.ref('orders/').push(order, error => callBack(error));
+      reference.set(order, error => callBack(error));
     }
 }

@@ -1,4 +1,5 @@
 export default interface Order {
+    id: string,
     products: Product[],
     UID: string,
     photoURL: string,
