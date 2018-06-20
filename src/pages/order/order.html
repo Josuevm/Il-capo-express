@@ -15,7 +15,7 @@
 
 <ion-content class="Content">
   <ion-list>
-    <ion-grid *ngFor="let item of orderItems" ion-item class="productsContainer">
+    <ion-grid *ngFor="let item of orderItems; index as i" ion-item class="productsContainer">
       <ion-row row-12>
         
         <ion-col col-4>
@@ -44,7 +44,7 @@
                   <ion-badge>M</ion-badge>
               </ion-col>
               <ion-col col-4>
-                  <button ion-button round class="addButton" (click)="onRemove(item)">Eliminar</button>
+                  <button ion-button round class="addButton" (click)="onRemove(item, i)">Eliminar</button>
               </ion-col>
               <ion-col col-4>  
                   <ion-badge>{{item.quantity}}</ion-badge>
@@ -61,7 +61,9 @@
               <p>Total:   ₡ {{totalPrice}}</p>
           </ion-col>
           <ion-col col-4 offset-4>
-              <button ion-button round (click)="onOrder()"> Ordenar  <ion-icon name="arrow-forward"></ion-icon> </button>
+              <button ion-button round (click)="onOrder()" [disabled]="orderItems.length == 0"> 
+                Ordenar  <ion-icon name="arrow-forward"></ion-icon> 
+              </button>
           </ion-col>
         </ion-row>
   </div>

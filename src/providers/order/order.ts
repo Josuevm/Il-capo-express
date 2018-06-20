@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import Order, { Product, Address } from '../../orderData';
+import firebase from 'firebase';
 /*
   Generated class for the OrderProvider provider.
 
@@ -10,75 +10,52 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class OrderProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello OrderProvider Provider');
+  constructor() {}
+
+  private db = firebase.database();
+  private UID: string;
+  private photoURL:string;
+  private products: Product[] = [];
+
+
+  /**
+   * setUserData
+   */
+  public setUserData(UID:string, photoURL:string) {
+    this.UID = UID;
+    this.photoURL = photoURL;
   }
-
-  private items = [
-      {
-        number: 1,
-        name: 'Jamon y Queso',
-        price: 23,
-        description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
-        quantity: 2
-      },
-      {
-        number: 2,
-        name: 'Peperoni',
-        price: 23,
-        description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
-        quantity: 1
-      },
-      {
-        number: 4,
-        name: 'Suprema',
-        price: 23,
-        description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
-        quantity: 6
-      }
-    ];
-
   /**
    * getOrder
    */
   public getOrder() {
-    return this.items.slice();
+    return this.products.slice();
   }
     /**
      * addItem
        item: menu item like pizza, pasta, etc
     */
-    public addItem(item) {
-        this.items.push(item);
+    public addItem(item:Product) {
+        this.products.forEach(element => {
+          if(element.id == item.id) {
+            //hacerle update de cantidad nada mas
+          }
+        });
+        this.products.push(item);//meter esto en el else
     }
 
     /**
      * removeItem
         item selected orderItem
     */
-    public removeItem(item) {
-        const index = this.items.findIndex(
-          (element) => item.number == element.number
-        );
-        this.items.splice(index, 1);
-    }
-
-    /**
-     * changeQuantity
-        item, 
-        newQuantity     
-    */
-    public changeQuantity(item, newQuantity) {
-      const selectedItem = this.items.find(
-        (element) => item.number == element.number
-      );
-      selectedItem.quantity = newQuantity;
+    public removeItem(index) {
+        this.products.splice(index, 1);
     }
 
     public getOrderPrice() {
       let orderPrice: number = 0;
-      this.items.forEach(element => {
-        orderPrice += element.number * element.price;
+      this.products.forEach(element => {
+        orderPrice += element.quantity * element.price;
       });
       return orderPrice;
     }
@@ -86,8 +63,14 @@ export class OrderProvider {
     /**
      * sendOrder
      */
-    public sendOrder() {
-      
+    public async sendOrder(callBack: Function, anotherAddress?: Address) {
+      let order:Order =  {
+        products: this.products,
+        UID: this.UID,
+        anotherAddress: anotherAddress,
+        photoURL: this.photoURL,
+        state: 'new'
+      };
+      this.db.ref('orders/').push(order, error => callBack(error));
     }
-
 }

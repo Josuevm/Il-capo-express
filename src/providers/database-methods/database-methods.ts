@@ -20,7 +20,7 @@ export class DatabaseMethodsProvider {
   }
 
   getDocument(collection, documentID):any {
-    return this.db.ref(collection + '/' + documentID)
+    return this.db.ref(collection + '/' + documentID);
   }
 
   updateDocument(collection, documentID, data) {

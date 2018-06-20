@@ -11,13 +11,22 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        Su pedido será enviado a la dirección predeterminada, puede modificarla si lo desea
-
-        <address-selector (addressChanged)="setAddress($event)"></address-selector>
-
+        Su pedido será enviado a la dirección predeterminada, puede cambiarla si desea
+        
         <div padding>
-          <button ion-button block class="accInfoBtn" (click)="submit()">Confirmar</button>
+            <button ion-button block class="accInfoBtn" (click)="submit()">Confirmar</button>
         </div>
+  
+        <div padding>
+          <button ion-button block class="accInfoBtn" (click)="changeAddress = !changeAddress">
+            {{(!changeAddress)? 'Cambiar esta vez':'No cambiar'}}
+          </button>
+        </div>
+
+        <div *ngIf="changeAddress" id="gps">
+          <address-selector (addressChanged)="setAddress($event)"></address-selector>
+        </div>
+
 
       </ion-col>
     </ion-row>

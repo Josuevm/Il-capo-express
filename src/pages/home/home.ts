@@ -6,6 +6,7 @@ import { MenuPage } from '../menu/menu';
 import firebase from 'firebase';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
 import { DatabaseMethodsProvider } from '../../providers/database-methods/database-methods';
+import { OrderProvider } from '../../providers/order/order';
 
 @Component({
   selector: 'page-home',
@@ -22,13 +23,15 @@ export class HomePage {
     public navCtrl: NavController,
     public errorHdlr: ErrorHandlerProvider,
     public ref: ChangeDetectorRef,
-    public db: DatabaseMethodsProvider) {
+    public db: DatabaseMethodsProvider,
+    private orderProv: OrderProvider) {
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         console.log(user);
         this.db.insertIfDontExist('users',user.uid, {name : user.displayName});
         this.userProfile = user;
+        this.orderProv.setUserData(user.uid, user.photoURL);//Send user data to the Order
         this.navCtrl.push(MenuPage);
       } else {
         console.log("There's no user here");

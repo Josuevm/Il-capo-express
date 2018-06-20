@@ -31,22 +31,26 @@ export class MenuPage {
     category: 'Pizzas Tradicionales',
     products: [
       {
+        id: '0',
         name: 'Jamon y Queso',
         price: [3000, 4200, 5600],
         description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
       },
       {
-        name: 'Jamon y Queso',
+        id: '1',
+        name: 'Hawiana',
         price: [3000, 4200, 5600],
         description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
       },
       {
-        name: 'Jamon y Queso',
+        id: '2',
+        name: 'Artesanal',
         price: [3000, 4200, 5600],
         description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
       },
       {
-        name: 'Jamon y Queso',
+        id: '3',
+        name: 'Suprema',
         price: [3000, 4200, 5600],
         description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
       }

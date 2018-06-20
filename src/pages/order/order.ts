@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { OrderProvider } from "../../providers/order/order";
 import { ModalController } from 'ionic-angular';
 import {AddressModalComponent} from '../../components/address-modal/address-modal'
+import { Product } from '../../orderData';
 /**
  * Generated class for the OrderPage page.
  *
@@ -24,15 +25,15 @@ export class OrderPage {
     private addressModal: ModalController) {
   }
 
-  public orderItems;
+  public orderItems:Product[] = [];
   public totalPrice: number;
 
   ionViewDidLoad() {
     this.updateOrder();
   }
 
-  removeItem(item) {
-    this.orderProv.removeItem(item);
+  removeItem(index) {
+    this.orderProv.removeItem(index);
     this.updateOrder();
   }
 
@@ -41,15 +42,15 @@ export class OrderPage {
     this.totalPrice = this.orderProv.getOrderPrice();
   }
 
-  onRemove(item) {
+  onRemove(item:Product, index) {
     let confirm = this.alertCtrl.create({
       title: 'Eliminar',
-      message: 'Eliminar ' + item .quantity + ' ' + item.name + ' de la orden?',
+      message: 'Eliminar ' + item.quantity + ' ' + item.name + ' de la orden?',
       buttons: [
         {
           text: 'Aceptar',
           handler: () => {
-            this.removeItem(item);
+            this.removeItem(index);
           }
         },
         {
@@ -60,10 +61,25 @@ export class OrderPage {
     confirm.present();
   }
 
+  onSent = (error) => {
+    let confirm = this.alertCtrl.create({
+      title: 'Orden Enviada',
+      message: !error
+          ?'Su orden ha sido enviada, pronto sera notificado sobre el progreso'
+          :'Lo sentimos, hubo un error al enviar la orden, intentelo de nuevo, o llame al ######',
+      buttons: [{text: 'Aceptar'}]
+    });
+    confirm.present();
+  }
+
   onOrder() {
-    //Se le debe pasar un data que contenga el objeto o array de alimentos
-  const addressModal = this.addressModal.create(AddressModalComponent);
-  addressModal.present();
+    const addressModal = this.addressModal.create(AddressModalComponent);
+    addressModal.present();
+    addressModal.onDidDismiss(data => {
+      if(data.sendOrder) {
+        this.orderProv.sendOrder(this.onSent, data.anotherAddress);
+      }
+    });
   }
 
 }

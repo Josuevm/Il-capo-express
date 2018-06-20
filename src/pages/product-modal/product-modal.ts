@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController, NavController } from 'ionic-angular';
 import { OrderProvider } from "../../providers/order/order";
+import { Product } from '../../orderData';
+import { OrderPage } from '../order/order';
 
 /**
  * Generated class for the ProductModalPage page.
@@ -36,16 +38,20 @@ export class ProductModalPage {
   { name: "alba", path: "../assets/imgs/alba.png" }
   ];
 
-  product = {
+  product: Product = {
+    id: '',
     name: "",
     size: "P",
-    price: "",
+    price: 0,
     observation: "",
-    quantity: "1",
+    quantity: 1,
     extras: []
   }
 
-  constructor(private navParams: NavParams, public orderProv: OrderProvider, private view: ViewController) {
+  constructor(private navParams: NavParams, 
+    public orderProv: OrderProvider, 
+    private view: ViewController,
+    private navCtrl: NavController) {
 
   }
 
@@ -64,7 +70,7 @@ export class ProductModalPage {
     this.information = this.navParams.get('data').description;
     this.product.name = this.navParams.get('data').name;
     this.product.price = this.navParams.get('data').price[0];
-
+    this.product.id = this.navParams.get('data').id;
     this.prices = this.navParams.get('data').price;
     //la imagen tiene que llegar por objeto
     this.thumbnail = "../assets/imgs/pizza.png";
@@ -83,10 +89,8 @@ export class ProductModalPage {
     let aux = this.product.extras.indexOf(extra);
     if (aux !== -1) {
       this.product.extras.splice(aux, 1);
-      console.log(this.product.extras);
     } else {
       this.product.extras.push(extra);
-      console.log(this.product.extras);
     }
   }
 
@@ -96,11 +100,10 @@ export class ProductModalPage {
 
     switch (Type) {
       case 0:
-
-        if ((parseInt(this.product.quantity) > 1)) this.product.quantity = (parseInt(this.product.quantity) - 1).toString();
+        if (this.product.quantity > 1) this.product.quantity = (this.product.quantity - 1);
         break;
       case 1:
-        if ((parseInt(this.product.quantity) < 6)) this.product.quantity = (parseInt(this.product.quantity) + 1).toString();
+        if (this.product.quantity < 6) this.product.quantity = (this.product.quantity + 1);
         break;
     }
   }
@@ -119,13 +122,18 @@ export class ProductModalPage {
         this.product.price = this.prices[2];
         break;
     }
-    console.log(this.selectedSize);
   } 
 
   addProduct() {
     this.product.observation = this.observation.value;
-    console.log(this.product);
     this.orderProv.addItem(this.product);
+    this.closeModal();
+  }
+
+  onShowOrder() {
+    this.orderProv.addItem(this.product);
+    this.navCtrl.push(OrderPage);
+    this.closeModal();
   }
 
 }

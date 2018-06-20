@@ -1,5 +1,9 @@
-address-modal {
+address-modal #gps  {
     address-selector #map-content {
         height: 100%;
     }
+}
+
+#gps {
+    height: 33%;
 }

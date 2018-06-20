@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
 import { DatabaseMethodsProvider } from '../../providers/database-methods/database-methods';
+import { OrderProvider } from '../../providers/order/order';
 
 /**
  * Generated class for the AccountManagerPage page.
@@ -48,7 +49,6 @@ export class AccountManagerPage {
 
       this.userUID = user.uid;
       this.setUserData(this.userUID);
-    
     });
   }
 
