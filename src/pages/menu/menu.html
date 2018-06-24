@@ -7,14 +7,14 @@
 <ion-header>
   <navbar>
     <div class="title">
-        <ion-buttons center>
-            <ion-title>
-              <button id="menuButton" ion-button item-centered (click)="toggleAccordion()">
-                {{menuTittle}}
-                <ion-icon name="arrow-down" padding-left="10px"></ion-icon>
-              </button>
-            </ion-title>
-          </ion-buttons>
+      <ion-buttons center>
+        <ion-title>
+          <button id="menuButton" ion-button item-centered (click)="toggleAccordion()">
+            {{menuTittle}}
+            <ion-icon name="arrow-down" padding-left="10px"></ion-icon>
+          </button>
+        </ion-title>
+      </ion-buttons>
     </div>
   </navbar>
   <ion-card>
@@ -31,7 +31,7 @@
 <ion-content padding class="menuContainer">
   <ion-list>
     <ion-grid *ngFor="let item of categoryItems" ion-item class="productsContainer">
-      <ion-row row-12>
+      <ion-row >
         <ion-col col-4>
           <img src="../assets/imgs/pizza.png" alt="">
         </ion-col>
@@ -40,24 +40,36 @@
             {{item.name}}
           </ion-row>
           <ion-row>
-            <ion-col>P {{item.price[0]}}</ion-col>
-            <ion-col>M {{item.price[1]}}</ion-col>
-            <ion-col>G {{item.price[2]}}</ion-col>
-          </ion-row>
-          <ion-row>
-            {{item.description}}
-          </ion-row>
-          <ion-row>
-            <ion-col col-3 offset-3>
-              <button ion-button round class="addButton" (click)="openModal(item)">Agregar</button>
-            </ion-col>
+            <ion-col>
+              <span style="color:#e20714">P</span> {{item.price[0]}}</ion-col>
+            <ion-col>
+              <span style="color:#e20714">G</span> {{item.price[1]}}</ion-col>
 
           </ion-row>
+          <ion-row>
+            <ion-col>
+              <span style="color:#e20714">M</span> {{item.price[2]}}</ion-col>
+            <ion-col>
+              <span style="color:#e20714">S</span> {{item.price[3]}}</ion-col>
+          </ion-row>
+
         </ion-col>
+      </ion-row>
+      <ion-row  wrap text-wrap>
+        {{item.description}}
+      </ion-row>
+      <ion-row >
+        <ion-col col-3 offset-7>
+          <button ion-button round class="addButton" (click)="openModal(item)">Agregar</button>
+        </ion-col>
+
+
       </ion-row>
     </ion-grid>
   </ion-list>
   <ion-fab right bottom (click)="onShowOrder()">
-    <button ion-fab ><img src="../assets/imgs/transport.png" alt=""></button>
+    <button ion-fab>
+      <img src="../assets/imgs/transport.png" alt="">
+    </button>
   </ion-fab>
 </ion-content>

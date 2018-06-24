@@ -44,7 +44,7 @@
 
     </ion-row>
     <ion-row row-12>
-      <ion-col col-3 class="size">
+      <ion-col col-12 class="size">
         Tamaño:
       </ion-col>
 
@@ -58,6 +58,10 @@
 
       <ion-col col-2>
         <button ion-button (click)="changeSize('G')" class="buttonSize" [class.active]="'G' === selectedSize">G</button>
+      </ion-col>
+
+      <ion-col col-2>
+        <button ion-button (click)="changeSize('S')" class="buttonSize" [class.active]="'S' === selectedSize">S</button>
       </ion-col>
 
       <ion-col col-3 class="size">

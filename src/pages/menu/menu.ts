@@ -33,25 +33,25 @@ export class MenuPage {
       {
         id: '0',
         name: 'Jamon y Queso',
-        price: [3000, 4200, 5600],
+        price: [2730, 6195, 7245, 9345],
         description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
       },
       {
         id: '1',
         name: 'Hawiana',
-        price: [3000, 4200, 5600],
+        price: [2730, 6195, 7245,9345],
         description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
       },
       {
         id: '2',
         name: 'Artesanal',
-        price: [3000, 4200, 5600],
+        price: [2730, 6195, 7245,9345],
         description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
       },
       {
         id: '3',
         name: 'Suprema',
-        price: [3000, 4200, 5600],
+        price: [2730, 6195, 7245,9345],
         description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
       }
     ]

@@ -3,6 +3,8 @@
     background-color: black;
 }
 .productsContainer{
+    padding-left: 0;
+    font-size: 100%;
     color: white;
     background-color: black;
 }
@@ -10,6 +12,9 @@
     background-color: white;
     color: black;
 }
+.item-inner {
+    padding-right: 0px!important;
+ }
 .card-content{
  
     padding: 0px 16px;
@@ -22,6 +27,7 @@ ion-header{
 ion-title{
 text-align :     center; 
 }
+
 
 .toolbar-title-md{
     color: white;

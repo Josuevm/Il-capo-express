@@ -28,7 +28,7 @@ export class ProductModalPage {
   thumbnail: string;
   selectedSize: string;
 
-  
+
 
   extras = [{ name: "chili", path: "../assets/imgs/chili.png" },
   { name: "cheese", path: "../assets/imgs/cheese.png" },
@@ -48,8 +48,8 @@ export class ProductModalPage {
     extras: []
   }
 
-  constructor(private navParams: NavParams, 
-    public orderProv: OrderProvider, 
+  constructor(private navParams: NavParams,
+    public orderProv: OrderProvider,
     private view: ViewController,
     private navCtrl: NavController) {
 
@@ -121,8 +121,11 @@ export class ProductModalPage {
       case "G":
         this.product.price = this.prices[2];
         break;
+      case "S":
+        this.product.price = this.prices[3];
+        break;
     }
-  } 
+  }
 
   addProduct() {
     this.product.observation = this.observation.value;
