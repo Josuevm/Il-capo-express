@@ -74,6 +74,7 @@ export class OrderProvider {
         user: this.user,
         address: anotherAddress?anotherAddress:this.user.address,
         photoURL: this.photoURL,
+        total: this.getOrderPrice(),
         state: 'new'
       };
       reference.set(order, error => callBack(error));

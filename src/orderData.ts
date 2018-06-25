@@ -5,6 +5,7 @@ export default interface Order {
     user: User
     photoURL: string,
     address: Address,
+    total: number,
     state: string //new, pending, finished, rejected
 }
 
