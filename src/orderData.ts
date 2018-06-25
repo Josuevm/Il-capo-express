@@ -2,8 +2,9 @@ export default interface Order {
     id: string,
     products: Product[],
     UID: string,
+    user: User
     photoURL: string,
-    anotherAddress?: Address,
+    address: Address,
     state: string //new, pending, finished, rejected
 }
 

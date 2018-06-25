@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Order, { Product, Address } from '../../orderData';
+import Order, { Product, Address, User } from '../../orderData';
 import firebase from 'firebase';
 /*
   Generated class for the OrderProvider provider.
@@ -14,6 +14,7 @@ export class OrderProvider {
 
   private db = firebase.database();
   private UID: string;
+  private user: User;
   private photoURL:string;
   private products: Product[] = [];
 
@@ -23,6 +24,12 @@ export class OrderProvider {
    */
   public setUserData(UID:string, photoURL:string) {
     this.UID = UID;
+    this.db.ref('users/' + UID).on("value", res => {
+      this.user = res.val();
+    }, error => {
+        console.log("Hubo un error al cargar los datos del usuario con ID:" + UID + 
+                "\n ErrorCode: " + error.code);
+    });
     this.photoURL = photoURL;
   }
   /**
@@ -36,12 +43,7 @@ export class OrderProvider {
        item: menu item like pizza, pasta, etc
     */
     public addItem(item:Product) {
-        this.products.forEach(element => {
-          if(element.id == item.id) {
-            //hacerle update de cantidad nada mas
-          }
-        });
-        this.products.push(item);//meter esto en el else
+      this.products.push(item);
     }
 
     /**
@@ -69,7 +71,8 @@ export class OrderProvider {
         id: reference.key,
         products: this.products,
         UID: this.UID,
-        anotherAddress: anotherAddress,
+        user: this.user,
+        address: anotherAddress?anotherAddress:this.user.address,
         photoURL: this.photoURL,
         state: 'new'
       };

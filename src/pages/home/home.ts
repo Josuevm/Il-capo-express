@@ -32,6 +32,7 @@ export class HomePage {
         this.db.insertIfDontExist('users',user.uid, {name : user.displayName});
         this.userProfile = user;
         this.orderProv.setUserData(user.uid, user.photoURL);//Send user data to the Order
+        console.log(user);
         this.navCtrl.push(MenuPage);
       } else {
         console.log("There's no user here");
