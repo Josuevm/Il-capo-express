@@ -19,46 +19,16 @@ import { OrderPage } from '../order/order';
   templateUrl: 'menu.html',
 })
 export class MenuPage {
+
+  private db = firebase.database();
+
   users: any[]
   information: any[];
   categoryItems: any[];
   menuTittle: string;
   flag: boolean;
-
-
-  //test data 
-  items = [{
-    category: 'Pizzas Tradicionales',
-    products: [
-      {
-        id: '0',
-        name: 'Jamon y Queso',
-        price: [2730, 6195, 7245, 9345],
-        description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
-      },
-      {
-        id: '1',
-        name: 'Hawiana',
-        price: [2730, 6195, 7245,9345],
-        description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
-      },
-      {
-        id: '2',
-        name: 'Artesanal',
-        price: [2730, 6195, 7245,9345],
-        description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
-      },
-      {
-        id: '3',
-        name: 'Suprema',
-        price: [2730, 6195, 7245,9345],
-        description: 'Salsa de tomate, queso mozzarella, jamón y pepperoni',
-      }
-    ]
-  }
-
-
-  ];
+  isPizza: boolean;
+  public items: any;
 
 
   @ViewChild("cc") cardContent: any;
@@ -68,21 +38,21 @@ export class MenuPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public fire: AngularFireAuth, private http: Http, 
      public renderer: Renderer, private productModal: ModalController) {
-
-    this.http.get('https://jsonplaceholder.typicode.com/users').subscribe((data) => {
-      this.users = data.json();
-    });
-
-    let localData = http.get('assets/menu.json').map(res => res.json().items);
-    localData.subscribe(data => {
-      this.information = data;
-      console.log(data);
-    });
-
+    this.loadMenu();
   }
+
   ngOnInit() {
-    this.menuTittle = "Menu"
-    this.renderer.setElementStyle(this.cardContent.nativeElement, "webkitTransition", "max-height 500ms , padding 500ms")
+    this.menuTittle = "Menu";
+    this.renderer.setElementStyle(this.cardContent.nativeElement, "webkitTransition", "max-height 500ms , padding 500ms");
+  }
+
+  private loadMenu() {
+    this.db.ref('menu').on("value", res => {
+      let menu = res.val();
+      this.items = Object.keys(menu).map(key => menu[key]);
+    }, error => {
+        console.log("Hubo un error al cargar el menu\nErrorCode: " + error.code);
+    });
   }
 
   onShowOrder() {
@@ -95,6 +65,7 @@ export class MenuPage {
 
   //set the content in the pizza in an array and the button tittle
   setContent(products, menuTittle) {
+    this.isPizza = menuTittle.includes('Pizza');//a lo mierda xdxdxdxd
     this.categoryItems = products;
     this.menuTittle = menuTittle
     this.toggleAccordion();
@@ -118,8 +89,12 @@ export class MenuPage {
   }
 
   openModal(product){
-    const productModal =  this.productModal.create('ProductModalPage',{data: product});
-    productModal.present();
+    if(this.isPizza) {
+      const productModal =  this.productModal.create('ProductModalPage',{data: product});
+      productModal.present();
+    } else {
+      alert("otro Modal");
+    }
   }
 
   

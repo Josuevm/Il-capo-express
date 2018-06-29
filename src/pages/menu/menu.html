@@ -39,19 +39,26 @@
           <ion-row>
             {{item.name}}
           </ion-row>
-          <ion-row>
-            <ion-col>
-              <span style="color:#e20714">P</span> {{item.price[0]}}</ion-col>
-            <ion-col>
-              <span style="color:#e20714">G</span> {{item.price[1]}}</ion-col>
-
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <span style="color:#e20714">M</span> {{item.price[2]}}</ion-col>
-            <ion-col>
-              <span style="color:#e20714">S</span> {{item.price[3]}}</ion-col>
-          </ion-row>
+          <ng-container *ngIf="isPizza; else price">
+            <ion-row>
+              <ion-col>
+                <span style="color:#e20714">P</span> {{item.price[0]}}</ion-col>
+              <ion-col>
+                <span style="color:#e20714">G</span> {{item.price[1]}}</ion-col>
+  
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <span style="color:#e20714">M</span> {{item.price[2]}}</ion-col>
+              <ion-col>
+                <span style="color:#e20714">S</span> {{item.price[3]}}</ion-col>
+            </ion-row>
+          </ng-container>
+          <ng-template #price>
+            <ion-row>
+              <ion-col>Precio {{item.price}}</ion-col>
+            </ion-row>
+          </ng-template>
 
         </ion-col>
       </ion-row>
