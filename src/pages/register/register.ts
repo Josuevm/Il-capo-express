@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import {HomePage} from '../home/home';
+import { HomePage } from '../home/home';
 import { MenuPage } from '../menu/menu';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
@@ -24,22 +24,22 @@ export class RegisterPage {
   @ViewChild('email') email;
   @ViewChild('password') password;
 
-  selectedAddress : any;
+  selectedAddress: any;
 
 
   constructor(private alertCtrl: AlertController,
     private fire: AngularFireAuth,
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public errorHdlr: ErrorHandlerProvider,
     public db: DatabaseMethodsProvider) {
   }
 
-  alert(message:string){ //This is just for test
+  alert(title: string, message: string) { //This is just for test
     this.alertCtrl.create({
-      title:"",
-      subTitle:message,
-      buttons:['OK']
+      title: title,
+      subTitle: message,
+      buttons: ['OK']
     }).present();
   }
 
@@ -47,29 +47,36 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
-  back(){
+  back() {
     this.navCtrl.push(HomePage);
   }
 
-  register(){
-    this.fire.auth.createUserWithEmailAndPassword(this.email.value,this.password.value)
-    .then(data =>{
-      let info ={
-        name: this.name.value,
-        telephone: this.telephone.value,
-        address : this.selectedAddress
-      }
-      this.db.setDocument('users',data.uid, info);
-      this.alert("Registrado con exito");
-      this.navCtrl.push(MenuPage);
-    })
-    .catch(error =>{
-      console.log(error.message)
-      this.alert(this.errorHdlr.handleError(error.message));
-    })
+  register() {
+    let info = {
+      name: this.name.value,
+      telephone: this.telephone.value,
+      address: this.selectedAddress
+    }
+    if (this.errorHdlr.checkProperties(info)) {
+      this.fire.auth.createUserWithEmailAndPassword(this.email.value, this.password.value)
+        .then(data => {
+          this.db.setDocument('users', data.uid, info);
+          this.alert("", "Registrado con exito");
+          this.navCtrl.push(MenuPage);
+        })
+        .catch(error => {
+          console.log(error.message)
+          this.alert("", this.errorHdlr.handleError(error.message));
+        })
+    } else {
+      this.alert("Error", "Complete todos los campos que se le solicitan");
+      return;
+    }
+
+
   }
 
-  setAddress(address){
+  setAddress(address) {
     this.selectedAddress = address;
   }
 

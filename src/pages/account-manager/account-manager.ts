@@ -1,8 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import firebase from 'firebase';
 import { DatabaseMethodsProvider } from '../../providers/database-methods/database-methods';
 import { OrderProvider } from '../../providers/order/order';
+import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
 
 /**
  * Generated class for the AccountManagerPage page.
@@ -38,7 +39,9 @@ export class AccountManagerPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public db: DatabaseMethodsProvider) {
+    public db: DatabaseMethodsProvider,
+    public errorHdlr: ErrorHandlerProvider,
+    public alertCtrl : AlertController) {
 
     firebase.auth().onAuthStateChanged(user => {
       if (!user.photoURL) {
@@ -78,7 +81,23 @@ export class AccountManagerPage {
       address: this.selectedAddress,
       telephone: this.telephone.value
     }
-    this.db.updateDocument('users', this.userUID, data);
+
+    console.log(data)
+    if(!(this.errorHdlr.checkProperties(data))){
+      this.alert('Error','Complete todos los campos que se le solicitan');
+    }else{
+      this.db.updateDocument('users', this.userUID, data);
+      this.alert('Información actualizada','Sus cambios se han guardado con éxito');
+    }
+    
+  }
+
+  alert(title:string,message:string){ //This is just for test
+    this.alertCtrl.create({
+      title: title,
+      subTitle:message,
+      buttons:['OK']
+    }).present();
   }
 
 }
