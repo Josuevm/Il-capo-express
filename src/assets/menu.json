@@ -1,180 +1,429 @@
 {
     "items": [
         {
-    "name":"Pizzas Tradicionales",
-     "children":[
-         {
-             "name":"Jamon y queso",
-             "information": "Salsa de tomate quezo Mozarella y jamon"
-            
-         },
-         {
-            "name":"Hongonada",
-            "information": "Salsa de tomate queso Mozarella jamon y hongos"
+            "category": "Pizzas Tradicionales",
+            "products": [
+                {
+                    "id": "0",
+                    "price": [
+                        2600,
+                        5900,
+                        6900,
+                        8900
+                    ],
+                    "name": "Jamon y queso",
+                    "information": "Salsa de tomate quezo Mozarella y jamon"
+                },
+                {
+                    "id": "1",
+                    "price": [
+                        2600,
+                        5900,
+                        6900,
+                        8900
+                    ],
+                    "name": "Hongonada",
+                    "information": "Salsa de tomate queso Mozarella jamon y hongos."
+                },
+                {
+                    "id": "2",
+                    "price": [
+                        2600,
+                        5900,
+                        6900,
+                        8900
+                    ],
+                    "name": "Hawaiana",
+                    "information": "Salsa de tomate queso Mozarella jamon y pina. "
+                },
+                {
+                    "id": "3",
+                    "price": [
+                        2600,
+                        5900,
+                        6900,
+                        8900
+                    ],
+                    "name": "Griega",
+                    "information": "Salsa de tomate queso Mozarella jamon y carne molida. "
+                },
+                {
+                    "id": "4",
+                    "price": [
+                        2600,
+                        5900,
+                        6900,
+                        8900
+                    ],
+                    "name": "Texana",
+                    "information": "Salsa de tomate queso Mozarella jamon y tocineta. "
+                },
+                {
+                    "id": "5",
+                    "price": [
+                        2600,
+                        5900,
+                        6900,
+                        8900
+                    ],
+                    "name": "Pepperoni",
+                    "information": "Salsa de tomate queso Mozarella jamon y pepperoni. "
+                },
+                {
+                    "id": "6",
+                    "price": [
+                        2600,
+                        5900,
+                        6900,
+                        8900
+                    ],
+                    "name": "Amatriciana",
+                    "information": "Salsa de tomate queso Mozarella, cebolla, tocineta y picante. "
+                }
+            ]
         },
         {
-            "name":"Hawaiana",
-            "information": "Salsa de tomate queso Mozarella jamon y pina "
+            "category": "Pizzas Premium",
+            "products": [
+                {
+                    "id": "0",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "name": "Il Capo",
+                    "information": "Salsa de tomate Mozarella Albahaca Pesto Procciuto y alcachofas."
+                },
+                {
+                    "name": "Italiana",
+                    "id": "1",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de tomate, Mozarella,Jamon,salami ,Hongos,Chile dulce, cebolla,Albahaca fresca, Pesto y Tomate en fruta."
+                },
+                {
+                    "name": "Suprema",
+                    "id": "2",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de tomate, Mozarella,Jamon,salami ,Hongos,Chile dulce, Cebolla y Carne Molida."
+                },
+                {
+                    "name": "Frutti de Mare",
+                    "id": "3",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de tomate, Mozarella, Mariscos y Pesto."
+                },
+                {
+                    "name": "4 Formaggio",
+                    "id": "4",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de tomate, Gorgonzola,Parmesano,Mozarella y Grana Padano."
+                },
+                {
+                    "name": "4 Estaciones",
+                    "id": "5",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de tomate, Mozarella,Alcachofas,Aceitunas Jamon y Hongos."
+                },
+                {
+                    "name": "4 Sabores",
+                    "id": "6",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Jamon, Hawaiana,Hongonada y Suprema."
+                },
+                {
+                    "name": "Brasileña",
+                    "id": "7",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de tomate, Mozarella,Limon, Carne Molida, Chile Dulce y Cebolla."
+                },
+                {
+                    "name": "Mexicana",
+                    "id": "8",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de tomate, Mozarella,Jamon,Carne Molida , Jalapeño, Chile Dulce y Cebolla."
+                },
+                {
+                    "name": "De Camaron",
+                    "id": "9",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de tomate, Mozarella,Camaron,Chile dulce, Cebolla y Pesto."
+                },
+                {
+                    "name": "Carnivora",
+                    "id": "10",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de tomate, Mozarella,Jamon,salami ,Pepperoni y Tocineta."
+                },
+                {
+                    "name": "Grana Padano",
+                    "id": "11",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa Blanca, Mozarella,Hongo Fresco,Jamon, Pesto y Grana Padano."
+                },
+                {
+                    "name": "Alfredo",
+                    "id": "12",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa Blanca, Mozarella, Jamon, Hongos, Chile Dulce, Cebolla y Albahaca Fresca."
+                },
+                {
+                    "name": "Ibiza",
+                    "id": "13",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa Blanca, Mozarella, Camarones, Albahaca y Pesto."
+                },
+                {
+                    "name": "Vegetariana",
+                    "id": "14",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa Tomate, Mozarella, Hongos, Palmito, Chile, Cebolla y Aceitunas."
+                },
+                {
+                    "name": "Toscana",
+                    "id": "15",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de tomate queso Mozarella jamon y carne molida. "
+                },
+                {
+                    "name": "Argentina",
+                    "id": "16",
+                    "price": [
+                        3200,
+                        6900,
+                        7900,
+                        9900
+                    ],
+                    "information": "Salsa de Tomate, Mozarella, Chorizo, Tomate en fruta y Limon."
+                }
+            ]
+        },
+        {
+            "category": "Pastas",
+            "products": [
+                {
+                    "name": "A la macho",
+                    "id": "0",
+                    "price": 3900,
+                    "information": "Espaguetti en salsa natural de tomate, Mozarella, Jamon y Hongos."
+                },
+                {
+                    "name": "Alfredo",
+                    "id": "1",
+                    "price": 3900,
+                    "information": "Espaguetti en salsa blanca,  Tomate, Mozarella, Jamon y Hongos."
+                },
+                {
+                    "name": "Fruto de Mar",
+                    "id": "2",
+                    "price": 4400,
+                    "information": "Espaguetti en salsa favorita y mariscos."
+                },
+                {
+                    "name": "De la Casa",
+                    "id": "3",
+                    "price": 3900,
+                    "information": "Salsa Pizza, Mozarella, Hongos Cocinado al horno."
+                },
+                {
+                    "name": "Al Pesto",
+                    "id": "4",
+                    "price": 3900,
+                    "information": "Espaguetti en salsa Pesto y Queso Grana Padano."
+                },
+                {
+                    "name": "Lasaña de Pollo",
+                    "id": "5",
+                    "price": 3900,
+                    "information": ""
+                }
+            ]
+        },
+        {
+            "category": "Foccacia",
+            "products": [
+                {
+                    "name": "Romero",
+                    "id": "0",
+                    "price": 3000,
+                    "information": "Romero y Aceite de oliva"
+                },
+                {
+                    "name": "Caprese",
+                    "id": "1",
+                    "price": 3500,
+                    "information": "Tomate, Mozarella fresca, Albahaca fresca."
+                },
+                {
+                    "name": "Al pesto",
+                    "id": "2",
+                    "price": 3900,
+                    "information": "Pesto, Grana Padano y Aceite de oliva."
+                },
+                {
+                    "name": "Tradicional",
+                    "id": "3",
+                    "price": 3000,
+                    "information": "Aceite de Oliva y Grana Padano."
+                }
+            ]
+        },
+        {
+            "category": "Ensalada",
+            "products": [
+                {
+                    "name": "Capresse",
+                    "id": "0",
+                    "price": 3600,
+                    "information": "Tomate Fresco, Mozarella Fresca, ALbahaca y Pesto."
+                },
+                {
+                    "name": "Cesar",
+                    "id": "1",
+                    "price": 3600,
+                    "information": "Lechuga, Pollo, Croutons y Aderezo Cesar."
+                },
+                {
+                    "name": "Taco Salad de pollo",
+                    "id": "2",
+                    "price": 3900,
+                    "information": "Canasta de Tortilla al Horno, Lechuga, Tomate, Pollo, Grana Padano y Aderezo."
+                },
+                {
+                    "name": "Taco Salad de Camaron",
+                    "id": "3",
+                    "price": 4500,
+                    "information": "Canasta de Tortilla al Horno, Lechuga, Tomate, Camaron, Grana Padano y Aderezo."
+                }
+            ]
+        },
+        {
+            "category": "Calzones",
+            "products": [
+                {
+                    "name": "Il capo",
+                    "id": "0",
+                    "price": 4000,
+                    "information": "Salsa de tomate, Mozarella, ALbahaca Fresca, Pesto, Prociutti y Alcachofas."
+                },
+                {
+                    "name": "Supremo",
+                    "id": "1",
+                    "price": 4500,
+                    "information": "Salsa de tomate, Mozarella,Jamon, Salami, Hongos, Chile Dulce, Cebolla y Carne Molida."
+                },
+                {
+                    "name": "Jamon y Queso",
+                    "id": "2",
+                    "price": 3800,
+                    "information": "Salsa de tomate, Mozarella y Jamon."
+                },
+                {
+                    "name": "Hongonado",
+                    "id": "3",
+                    "price": 4500,
+                    "information": "Salsa de tomate, Mozarella y Jamon y Hongos."
+                },
+                {
+                    "name": "Hawaiano",
+                    "id": "4",
+                    "price": 3800,
+                    "information": "Salsa de tomate, Mozarella y Jamon y Piña."
+                }
+            ]
+        },
+        {
+            "category": "Postres",
+            "products": [
+                {
+                    "name": "Pizza Dulce",
+                    "id": "0",
+                    "price": 3700,
+                    "information": ""
+                },
+                {
+                    "name": "Chescake de Fresa",
+                    "id": "1",
+                    "price": 1500,
+                    "information": ""
+                }
+            ]
         }
-    ]   
-    },
-    {
-        "name":"Pizzas Premium",
-        "children":[
-            {
-                "name":"Il Capo",
-                "information": "Salsa de tomate Mozarella Albahaca Pesto Prociuto y alcachofas"
-            },
-            {
-                "name":"Italiana",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl."
-           },
-           {
-                 "name":"Suprema",
-                 "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                 "prices": [{
-                "peq":"",
-                 "Med":"",
-                 "gra":"",
-                 "Sup":""
-
-            }]
-           }
-        ]     
-    },
-    {
-        "name":"Pastas",
-        "children":[
-            {
-                "name":"A la macho",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "prices": [{
-                "peq":"",
-                 "Med":"",
-                 "gra":"",
-                 "Sup":""
-
-            }]
-            },
-            {
-                "name":"Alfredo",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "prices": [{
-                "peq":"",
-                 "Med":"",
-                 "gra":"",
-                 "Sup":""
-
-            }]
-           },
-           {
-                 "name":"Fruto de Mar",
-                 "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                 "prices": [{
-                "peq":"",
-                 "Med":"",
-                 "gra":"",
-                 "Sup":""
-
-            }]
-           }
-        ]     
-    },
-    {
-        "name":"Foccacia",
-        "children":[  
-            {
-                "name":"Romero",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "prices": [{
-                "peq":"",
-                 "Med":"",
-                 "gra":"",
-                 "Sup":""
-
-            }]
-            },
-            {
-                "name":"Caprese",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "prices": [{
-                "peq":"",
-                 "Med":"",
-                 "gra":"",
-                 "Sup":""
-
-            }]
-            },
-            {
-                "name":"Al pesto",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "prices": [{
-                "peq":"",
-                 "Med":"",
-                 "gra":"",
-                 "Sup":""
-
-            }]
-           }
-        ]     
-    },
-    {
-        "name":"Ensalada",
-        "children":[
-            {
-                "name":"Capresse",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "prices": [{
-                "peq":"",
-                 "Med":"",
-                 "gra":"",
-                 "Sup":""
-
-            }]
-            },
-            {
-                "name":"Cesar",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "prices": [{
-                "peq":"",
-                 "Med":"",
-                 "gra":"",
-                 "Sup":""
-
-            }]
-           },
-           {
-                "name":"Taco Salad de pollo",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "prices": [{   
-                "peq":"",
-                 "Med":"",
-                 "gra":"",
-                 "Sup":""
-
-            }]
-           }
-        ]     
-    },
-    {
-        "name":"Calzones",
-        "children":[
-            {
-                "name":"Il capo",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "price": "$25"
-            },
-            {
-                "name":"Supremo",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "price": "$25"
-           },
-           {
-                "name":"Hongondado",
-                "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                "price": "$25"
-           }
-        ]     
-    }
-]
+    ]
 }
