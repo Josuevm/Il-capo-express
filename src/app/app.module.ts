@@ -10,6 +10,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environment/environment';
 import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Firebase } from '@ionic-native/firebase';
 import {} from '@types/googlemaps';
 
 import { MyApp } from './app.component';
@@ -31,8 +32,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DatabaseMethodsProvider } from '../providers/database-methods/database-methods';
 import { MapsConectivityProvider } from '../providers/maps-conectivity/maps-conectivity';
 import { GoogleMapsProvider } from '../providers/google-maps/google-maps';
-import { AddressSelectorComponent } from '../components/address-selector/address-selector'
-import {AddressModalComponent} from '../components/address-modal/address-modal'
+import { AddressSelectorComponent } from '../components/address-selector/address-selector';
+import {AddressModalComponent} from '../components/address-modal/address-modal';
+import { FcmProvider } from '../providers/fcm/fcm';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import {AddressModalComponent} from '../components/address-modal/address-modal'
     MapsConectivityProvider,
     GoogleMapsProvider,
     Network,
-    Geolocation
+    Geolocation,
+    Firebase,
+    FcmProvider
   ]
 })
 export class AppModule {}

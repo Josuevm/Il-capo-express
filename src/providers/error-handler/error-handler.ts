@@ -38,4 +38,13 @@ export class ErrorHandlerProvider {
     return errorMessage;
   }
 
+  checkProperties(obj) {
+    for (var key in obj) {
+      console.log(obj[key])
+        if (obj[key] === null || obj[key] == "")
+            return false;
+    }
+    return true;
+}
+
 }
