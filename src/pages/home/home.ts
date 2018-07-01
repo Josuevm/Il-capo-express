@@ -26,6 +26,11 @@ export class HomePage {
     public db: DatabaseMethodsProvider,
     private orderProv: OrderProvider) {
 
+
+    /**
+     * Validates if there is a logged user,
+     * If there is change to the Menu page if not, shows the login/register page
+     */
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         console.log(user);
@@ -53,10 +58,16 @@ export class HomePage {
     console.log("entroooo");
   }
 
+  /**
+   * Change to the register page
+   */
   goRegister() {
     this.navCtrl.push(RegisterPage);
   }
 
+  /**
+   * Sends an email to the specified email to recover password
+   */
   recoverPass() {
     this.fire.auth.sendPasswordResetEmail(this.email.value)
       .then(res => {

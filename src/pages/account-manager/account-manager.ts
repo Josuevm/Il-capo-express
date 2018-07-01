@@ -58,7 +58,9 @@ export class AccountManagerPage {
 
   ionViewDidLoad() {}
 
-
+  /**
+   * Gets the logged user data from database and sets it on the diferent inputs
+   */
   setUserData(userUID) {
     let self = this;
     let doc = this.db.getDocument('users', userUID);
@@ -70,19 +72,20 @@ export class AccountManagerPage {
     })
   }
 
+  
   setAddress(address){
     this.selectedAddress = address;
-    console.log(this.selectedAddress)
   }
 
+  /**
+   * Saves the updated info in case that there is no empty fields and the data has the correct format
+   */
   submit() {
     let data = {
       name: this.name.value,
       address: this.selectedAddress,
       telephone: this.telephone.value
     }
-
-    console.log(data)
     if(!(this.errorHdlr.checkProperties(data))){
       this.alert('Error','Complete todos los campos que se le solicitan');
     }else{

@@ -47,10 +47,17 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
+  /**
+   * Returns to the Home Page
+   */
   back() {
     this.navCtrl.push(HomePage);
   }
 
+  /**
+   * Create the user account,
+   * validates if the requested fields are not empty or invalid
+   */
   register() {
     let info = {
       name: this.name.value,
@@ -76,6 +83,9 @@ export class RegisterPage {
 
   }
 
+  /**
+   * notifies in case that the address on the map is changed
+   */
   setAddress(address) {
     this.selectedAddress = address;
   }

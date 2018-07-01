@@ -5,10 +5,8 @@ import { GoogleMapsProvider } from '../../providers/google-maps/google-maps';
 import { DatabaseMethodsProvider } from '../../providers/database-methods/database-methods';
 import firebase from 'firebase';
 /**
- * Generated class for the AddressSelectorComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
+ * This class handles an input to search a location, a map to select an specific addres
+ * and another input to add another signals to send a more specified address.
  */
 @Component({
   selector: 'address-selector',
@@ -78,6 +76,11 @@ export class AddressSelectorComponent {
 
   }
 
+  /**
+   * Sets the initial position of the map
+   * In case that there is no user registered position is set on an specific area
+   * and if there is a user logged in maps position is going to be the user´s address
+   */
   setPosition() {
 
     let position: any;
@@ -105,6 +108,11 @@ export class AddressSelectorComponent {
     }
   }
 
+  /**
+   * This method receives a string from the searchbar input and searchs
+   * diferent locations related with that string
+   * Also, sets the map location based on the specified string.
+   */
   selectPlace(place) {
     this.places = [];
     let location = {
@@ -128,6 +136,11 @@ export class AddressSelectorComponent {
     });
   }
 
+  /**
+   * Based on the string specified on the searchbar input
+   * this method shows similar places so the user can choose
+   * wich is te correct.
+   */
   searchPlace() {
     this.saveDisabled = true;
     if (this.query.length > 0 && !this.searchDisabled) {
@@ -149,6 +162,10 @@ export class AddressSelectorComponent {
     }
   }
 
+  /**
+   * In case that there is a logged user this method gets
+   * that user addrees coordinates
+   */
   getUserCoordinates() {
     let self = this;
     let doc = this.db.getDocument('users', this.userUID);
