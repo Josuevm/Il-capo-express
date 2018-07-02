@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Http } from '@angular/http';
 
-import {ModalController} from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { OrderPage } from '../order/order';
 /**
  * Generated class for the MenuPage page.
@@ -35,9 +35,9 @@ export class MenuPage {
   icon: string = "arrow-forward";
   accordionExpanded = false;
   //subscribe to the json to get the menu.
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public fire: AngularFireAuth, private http: Http, 
-     public renderer: Renderer, private productModal: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public fire: AngularFireAuth, private http: Http,
+    public renderer: Renderer, private productModal: ModalController) {
     this.loadMenu();
   }
 
@@ -51,7 +51,7 @@ export class MenuPage {
       let menu = res.val();
       this.items = Object.keys(menu).map(key => menu[key]);
     }, error => {
-        console.log("Hubo un error al cargar el menu\nErrorCode: " + error.code);
+      console.log("Hubo un error al cargar el menu\nErrorCode: " + error.code);
     });
   }
 
@@ -73,7 +73,7 @@ export class MenuPage {
 
   showMenu() {
   }
-  
+
   //toggle the accoordion by changing its css.
   toggleAccordion() {
     if (this.accordionExpanded) {
@@ -88,17 +88,26 @@ export class MenuPage {
     this.flag = !this.flag;
   }
 
-  openModal(product){
-    if(this.isPizza) {
-      const productModal =  this.productModal.create('ProductModalPage',{data: product});
-      productModal.present();
-    } else {
-      alert("otro Modal");
-    }
+  openModal(product) {
+    // no hace falta otro modal papu xdd
+    const productModal = this.productModal.create('ProductModalPage', { data: product, isPizza: this.isPizza, isHalf: false });
+    productModal.present();
+
   }
 
-  
+  showModalHalf() {
+    let categoryPizzas = [];
+    this.categoryItems.map((pizza) => {
+      categoryPizzas.push(pizza.name);
+    })
+    let data = {
+      categoryPizzas: categoryPizzas,
+      price: this.categoryItems[0].price
+    }
 
+    const productModal = this.productModal.create('ProductModalPage', { data: data, isPizza: this.isPizza, isHalf: true });
+    productModal.present();
+  }
 }
 
 

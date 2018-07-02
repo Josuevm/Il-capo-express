@@ -5,10 +5,8 @@ import { DatabaseMethodsProvider } from '../../providers/database-methods/databa
 import { Address } from '../../orderData';
 
 /**
- * Generated class for the AddressModalComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
+ * This component handles a modal with the address form
+ * 
  */
 @Component({
   selector: 'address-modal',
@@ -22,14 +20,23 @@ export class AddressModalComponent {
   constructor(private view: ViewController,
               public navParams: NavParams) {}
 
+  /**
+   * Close the address modal
+   */
   closeModal() {
     this.view.dismiss({sendOrder: false});
   }
 
+  /**
+   * notifies in case that the address on the map is changed
+   */
   setAddress(address){
     this.selectedAddress = address;
   }
 
+  /**
+   * Submits the selected address
+   */
   submit() {
     if(!this.changeAddress) {
       this.selectedAddress = null;

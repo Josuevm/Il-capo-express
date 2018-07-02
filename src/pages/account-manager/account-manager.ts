@@ -58,7 +58,9 @@ export class AccountManagerPage {
 
   ionViewDidLoad() {}
 
-
+  /**
+   * Gets the logged user data from database and sets it on the diferent inputs
+   */
   setUserData(userUID) {
     let self = this;
     let doc = this.db.getDocument('users', userUID);
@@ -70,11 +72,14 @@ export class AccountManagerPage {
     })
   }
 
+  
   setAddress(address){
     this.selectedAddress = address;
-    console.log(this.selectedAddress)
   }
 
+  /**
+   * Saves the updated info in case that there is no empty fields and the data has the correct format
+   */
   submit() {
     let data = {
       name: this.name.value,
@@ -82,14 +87,22 @@ export class AccountManagerPage {
       telephone: this.telephone.value
     }
 
-    console.log(data)
-    if(!(this.errorHdlr.checkProperties(data))){
-      this.alert('Error','Complete todos los campos que se le solicitan');
+    if((this.errorHdlr.checkProperties(data)) && this.errorHdlr.checkProperties(data.address)){
+          if(this.validateTelephone(data.telephone)){
+            this.db.updateDocument('users', this.userUID, data);
+            this.alert('Información actualizada','Sus cambios se han guardado con éxito');
+          }else{
+            this.alert('Error','El telefono debe contener 8 digitos');
+          }
     }else{
-      this.db.updateDocument('users', this.userUID, data);
-      this.alert('Información actualizada','Sus cambios se han guardado con éxito');
+      this.alert('Error','Complete todos los campos que se le solicitan');
     }
     
+  }
+
+  validateTelephone(telephone){
+    let regex = new RegExp("^[0-9]{8}$");
+    return regex.test(telephone);
   }
 
   alert(title:string,message:string){ //This is just for test

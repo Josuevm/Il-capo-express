@@ -23,6 +23,9 @@ export class UserPopoverComponent {
     this.navCtrl.push(AccountManagerPage);
   }
   
+  /**
+   * Close user session
+   */
   signOut(){
     this.fire.auth.signOut();
     this.navCtrl.push(HomePage);

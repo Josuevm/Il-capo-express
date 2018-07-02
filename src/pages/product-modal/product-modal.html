@@ -17,59 +17,79 @@
 
   <ion-grid>
     <ion-row row-12>
-      <ion-col col-5>
+      <ion-col *ngIf="!isHalf" col-5>
         {{product.name}}
         <img src="assets/imgs/pizza.png" alt="">
 
       </ion-col>
+
+      <ion-col *ngIf="isHalf" col-12>
+        1# Mitad:
+        <select  class="halfContainer" (change)="changeHalf($event.target.value,1)">
+          <option *ngFor='let pizza of halfList' [value]="pizza">
+            {{pizza}}
+          </option>
+        </select>
+
+      </ion-col>
+      <ion-col *ngIf="isHalf" col-12>
+        2# Mitad:
+        <select  class="halfContainer" (change)="changeHalf($event.target.value,2)">
+          <option *ngFor='let pizza of halfList' [value]="pizza">
+            {{pizza}}
+          </option>
+        </select>
+      </ion-col>
+
+
       <ion-col col-7>
-        Extras
+        <div *ngIf="isPizza">
+          Extras
+          <ion-grid>
+            <ion-row row-12>
+              <ion-col col-4 *ngFor="let extra of extras" class="extrasContainer">
 
+                <button ion-button (click)="addExtra(extra.name)" class="extraButton" [class.active]="extraActive(extra.name)">
+                  <img class="extraImg" src="{{extra.path}}" alt="">
+                </button>
 
-        <ion-grid>
-          <ion-row row-12>
-            <ion-col col-4 *ngFor="let extra of extras" class="extrasContainer">
-
-              <button ion-button (click)="addExtra(extra.name)" class="extraButton" [class.active]="extraActive(extra.name)">
-                <img class="extraImg" src="{{extra.path}}" alt="">
-              </button>
-
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-
-
-
-      </ion-col>
-
-    </ion-row>
-    <ion-row row-12>
-      <ion-col col-12 class="size">
-        Tamaño:
-      </ion-col>
-
-      <ion-col col-2>
-        <button ion-button (click)="changeSize('P')" class="buttonSize" [class.active]="'P' === selectedSize">P</button>
-      </ion-col>
-
-      <ion-col col-2>
-        <button ion-button (click)="changeSize('M')" class="buttonSize" [class.active]="'M' === selectedSize">M</button>
-      </ion-col>
-
-      <ion-col col-2>
-        <button ion-button (click)="changeSize('G')" class="buttonSize" [class.active]="'G' === selectedSize">G</button>
-      </ion-col>
-
-      <ion-col col-2>
-        <button ion-button (click)="changeSize('S')" class="buttonSize" [class.active]="'S' === selectedSize">S</button>
-      </ion-col>
-
-      <ion-col col-3 class="size">
-        ₡ {{this.product.price}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
       </ion-col>
 
 
     </ion-row>
+    <div *ngIf="isPizza">
+      <ion-row row-12>
+
+        <ion-col col-12 class="size">
+          Tamaño:
+        </ion-col>
+
+        <ion-col col-2>
+          <button ion-button (click)="changeSize('P')" class="buttonSize" [class.active]="'P' === selectedSize">P</button>
+        </ion-col>
+
+        <ion-col col-2>
+          <button ion-button (click)="changeSize('M')" class="buttonSize" [class.active]="'M' === selectedSize">M</button>
+        </ion-col>
+
+        <ion-col col-2>
+          <button ion-button (click)="changeSize('G')" class="buttonSize" [class.active]="'G' === selectedSize">G</button>
+        </ion-col>
+
+        <ion-col col-2>
+          <button ion-button (click)="changeSize('S')" class="buttonSize" [class.active]="'S' === selectedSize">S</button>
+        </ion-col>
+
+        <ion-col col-3 class="size">
+          ₡ {{this.product.price}}
+        </ion-col>
+
+      </ion-row>
+    </div>
 
     <ion-row row-12>
       <ion-col col-6>

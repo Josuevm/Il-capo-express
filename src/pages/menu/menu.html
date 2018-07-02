@@ -19,6 +19,7 @@
   </navbar>
   <ion-card>
     <ion-card-content [hidden]="!flag" #cc>
+
       <accordion *ngFor="let item of items" [title]="item.category" (click)="setContent(item.products,item.category) ">
       </accordion>
     </ion-card-content>
@@ -29,9 +30,11 @@
 </ion-header>
 <!--set the content in the menu -->
 <ion-content padding class="menuContainer">
+
   <ion-list>
     <ion-grid *ngFor="let item of categoryItems" ion-item class="productsContainer">
-      <ion-row >
+
+      <ion-row>
         <ion-col col-4>
           <img src="assets/imgs/pizza.png" alt="">
         </ion-col>
@@ -45,7 +48,7 @@
                 <span style="color:#e20714">P</span> {{item.price[0]}}</ion-col>
               <ion-col>
                 <span style="color:#e20714">G</span> {{item.price[1]}}</ion-col>
-  
+
             </ion-row>
             <ion-row>
               <ion-col>
@@ -62,21 +65,30 @@
 
         </ion-col>
       </ion-row>
-      <ion-row  wrap text-wrap>
+      <ion-row wrap text-wrap>
         {{item.description}}
       </ion-row>
-      <ion-row >
+      <ion-row>
         <ion-col col-3 offset-7>
           <button ion-button round class="addButton" (click)="openModal(item)">Agregar</button>
         </ion-col>
-
-
       </ion-row>
     </ion-grid>
   </ion-list>
+
+
+
+
+  <ion-fab *ngIf="isPizza" left bottom (click)="showModalHalf()">
+    <button ion-fab>
+      <img src="../assets/imgs/half.png" alt="">
+    </button>
+  </ion-fab>
+
   <ion-fab right bottom (click)="onShowOrder()">
     <button ion-fab>
       <img src="assets/imgs/transport.png" alt="">
     </button>
   </ion-fab>
+
 </ion-content>

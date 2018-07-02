@@ -1,3 +1,6 @@
+/**
+ * Firebase information
+ */
 export const environment = {
     production: false,
     firebase: {
