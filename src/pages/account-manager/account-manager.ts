@@ -86,13 +86,23 @@ export class AccountManagerPage {
       address: this.selectedAddress,
       telephone: this.telephone.value
     }
-    if(!(this.errorHdlr.checkProperties(data))){
-      this.alert('Error','Complete todos los campos que se le solicitan');
+
+    if((this.errorHdlr.checkProperties(data)) && this.errorHdlr.checkProperties(data.address)){
+          if(this.validateTelephone(data.telephone)){
+            this.db.updateDocument('users', this.userUID, data);
+            this.alert('Información actualizada','Sus cambios se han guardado con éxito');
+          }else{
+            this.alert('Error','El telefono debe contener 8 digitos');
+          }
     }else{
-      this.db.updateDocument('users', this.userUID, data);
-      this.alert('Información actualizada','Sus cambios se han guardado con éxito');
+      this.alert('Error','Complete todos los campos que se le solicitan');
     }
     
+  }
+
+  validateTelephone(telephone){
+    let regex = new RegExp("^[0-9]{8}$");
+    return regex.test(telephone);
   }
 
   alert(title:string,message:string){ //This is just for test

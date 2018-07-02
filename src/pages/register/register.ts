@@ -64,8 +64,9 @@ export class RegisterPage {
       telephone: this.telephone.value,
       address: this.selectedAddress
     }
-    if (this.errorHdlr.checkProperties(info)) {
-      this.fire.auth.createUserWithEmailAndPassword(this.email.value, this.password.value)
+    if (this.errorHdlr.checkProperties(info) && this.errorHdlr.checkProperties(info.address)) {
+      if(this.validateTelephone(info.telephone)){
+        this.fire.auth.createUserWithEmailAndPassword(this.email.value, this.password.value)
         .then(data => {
           this.db.setDocument('users', data.uid, info);
           this.alert("", "Registrado con exito");
@@ -75,6 +76,11 @@ export class RegisterPage {
           console.log(error.message)
           this.alert("", this.errorHdlr.handleError(error.message));
         })
+      }else{
+        this.alert('Error','El telefono debe contener 8 digitos');
+      }
+      
+
     } else {
       this.alert("Error", "Complete todos los campos que se le solicitan");
       return;
@@ -82,6 +88,12 @@ export class RegisterPage {
 
 
   }
+
+  validateTelephone(telephone){
+    let regex = new RegExp("^[0-9]{8}$");
+    return regex.test(telephone);
+  }
+
 
   /**
    * notifies in case that the address on the map is changed
