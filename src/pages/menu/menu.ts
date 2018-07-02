@@ -90,14 +90,24 @@ export class MenuPage {
 
   openModal(product) {
     // no hace falta otro modal papu xdd
-
-    const productModal = this.productModal.create('ProductModalPage', { data: product, isPizza: this.isPizza });
+    const productModal = this.productModal.create('ProductModalPage', { data: product, isPizza: this.isPizza, isHalf: false });
     productModal.present();
 
   }
 
+  showModalHalf() {
+    let categoryPizzas = [];
+    this.categoryItems.map((pizza) => {
+      categoryPizzas.push(pizza.name);
+    })
+    let data = {
+      categoryPizzas: categoryPizzas,
+      price: this.categoryItems[0].price
+    }
 
-
+    const productModal = this.productModal.create('ProductModalPage', { data: data, isPizza: this.isPizza, isHalf: true });
+    productModal.present();
+  }
 }
 
 

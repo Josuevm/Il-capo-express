@@ -17,10 +17,28 @@
 
   <ion-grid>
     <ion-row row-12>
-      <ion-col col-5>
+      <ion-col *ngIf="!isHalf" col-5>
         {{product.name}}
         <img src="../assets/imgs/pizza.png" alt="">
 
+      </ion-col>
+
+      <ion-col *ngIf="isHalf" col-12>
+        1# Mitad:
+        <select #firstHalf class="halfContainer" (change)="changeHalf($event.target.value,1)">
+          <option *ngFor='let pizza of halfList' [value]="pizza">
+            {{pizza}}
+          </option>
+        </select>
+
+      </ion-col>
+      <ion-col *ngIf="isHalf" col-12>
+        2# Mitad:
+        <select #firstHalf class="halfContainer" (change)="changeHalf($event.target.value,2)">
+          <option *ngFor='let pizza of halfList' [value]="pizza">
+            {{pizza}}
+          </option>
+        </select>
       </ion-col>
 
 
@@ -44,8 +62,8 @@
 
     </ion-row>
     <div *ngIf="isPizza">
-    <ion-row row-12>
-  
+      <ion-row row-12>
+
         <ion-col col-12 class="size">
           Tamaño:
         </ion-col>
@@ -70,7 +88,7 @@
           ₡ {{this.product.price}}
         </ion-col>
 
-    </ion-row>
+      </ion-row>
     </div>
 
     <ion-row row-12>

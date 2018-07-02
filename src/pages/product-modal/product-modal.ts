@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavParams, ViewController, NavController } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController, NavController, GESTURE_GO_BACK_SWIPE } from 'ionic-angular';
 import { OrderProvider } from "../../providers/order/order";
 import { Product } from '../../orderData';
 import { OrderPage } from '../order/order';
@@ -19,6 +19,9 @@ import { ToastController } from 'ionic-angular/components/toast/toast-controller
 export class ProductModalPage {
 
   @ViewChild('observation') observation;
+  @ViewChild('firstHalf') firstHalf;
+  @ViewChild('secondHalf') secondHalf;
+
 
   //la imagen tiene que llegar por objeto
   //"../assets/imgs/pizza.png"
@@ -28,6 +31,8 @@ export class ProductModalPage {
   thumbnail: string;
   selectedSize: string;
   isPizza: boolean;
+  isHalf: boolean;
+  halfList: any;
 
   product: Product = {
     id: '',
@@ -71,7 +76,7 @@ export class ProductModalPage {
     console.log(this.navParams.get('data'));
     //indica si es pizza, esto para la modificacion automatica del modal 
     this.isPizza = this.navParams.get('isPizza');
-
+    this.isHalf = this.navParams.get('isHalf');
     if (this.isPizza) {
       this.product.size = "P";
       this.selectedSize = "P"
@@ -80,8 +85,26 @@ export class ProductModalPage {
       this.product.price = this.navParams.get('data').price;
     }
 
-    this.information = this.navParams.get('data').description;
-    this.product.name = this.navParams.get('data').name;
+
+    if (this.isHalf) {
+
+      this.information = "";
+      this.halfList = this.navParams.get('data').categoryPizzas;
+
+      this.product = {
+        ...this.product,
+        name: "Mitad y Mitad"
+        // firstHalf: this.halfList[0],
+        //  secondHalf: this.halfList[0]
+      }
+
+    } else {
+      this.information = this.navParams.get('data').description;
+      this.product.name = this.navParams.get('data').name;
+    }
+
+
+
     this.product.id = this.navParams.get('data').id;
     this.prices = this.navParams.get('data').price;
     //la imagen tiene que llegar por objeto
@@ -152,8 +175,25 @@ export class ProductModalPage {
     }
   }
 
+  changeHalf(selected_value, half) {
+    switch (half) {
+      case 1:
+        // this.product.fistHalf = selected_value;
+        break;
+      case 2:
+        //this.product.secondHalf = selected_value;
+        break;
+    }
+    console.log(this.product);
+  }
+
   //this method adds a product to the order provider, then close the modal and shows a toast notification.
   addProduct() {
+    if (this.isHalf) {
+      //  this.product.firstHalf = this.firstHalf.value;
+      // this.product.secondHalf = this.secondHalf.value;
+    }
+
     this.product.observation = this.observation.value;
     this.orderProv.addItem(this.product);
     this.closeModal();
