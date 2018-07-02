@@ -15,19 +15,19 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen
             , fcm: FcmProvider, toastCtrl: ToastController) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
+    
       // Get a FCM token
-    //     fcm.getToken();
+        fcm.getToken();
     // // Listen to incoming messages
-    //     fcm.listenToNotifications().pipe(
-    //      tap(msg => {
-    //            // show a toast
-    //        const toast = toastCtrl.create({
-    //            message: msg.body,
-    //            duration: 3000
-    //        });
-    //          toast.present();
-    //      })).subscribe();
+         fcm.listenToNotifications().pipe(
+          tap(msg => {
+                // show a toast
+            const toast = toastCtrl.create({
+                message: msg.body,
+               duration: 3000
+            });
+              toast.present();
+          })).subscribe();
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
