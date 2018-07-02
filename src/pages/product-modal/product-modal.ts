@@ -19,8 +19,6 @@ import { ToastController } from 'ionic-angular/components/toast/toast-controller
 export class ProductModalPage {
 
   @ViewChild('observation') observation;
-  @ViewChild('firstHalf') firstHalf;
-  @ViewChild('secondHalf') secondHalf;
 
 
   //la imagen tiene que llegar por objeto
@@ -33,6 +31,9 @@ export class ProductModalPage {
   isPizza: boolean;
   isHalf: boolean;
   halfList: any;
+
+  firstHalf: string;
+  secondHalf: string;
 
   product: Product = {
     id: '',
@@ -91,12 +92,10 @@ export class ProductModalPage {
       this.information = "";
       this.halfList = this.navParams.get('data').categoryPizzas;
 
-      this.product = {
-        ...this.product,
-        name: "Mitad y Mitad"
-        // firstHalf: this.halfList[0],
-        //  secondHalf: this.halfList[0]
-      }
+      this.product.name = "Mitad y Mitad";
+      this.firstHalf = this.halfList[0];
+      this.secondHalf = this.halfList[0];
+
 
     } else {
       this.information = this.navParams.get('data').description;
@@ -157,6 +156,7 @@ export class ProductModalPage {
   // if will update the selectedSize and the size in the product object 
   // then it will chanche the product size, in relation to the string itself
   changeSize(Size) {
+    console.log(this.product);
     this.selectedSize = Size;
     this.product.size = Size;
     switch (Size) {
@@ -178,22 +178,21 @@ export class ProductModalPage {
   changeHalf(selected_value, half) {
     switch (half) {
       case 1:
-        // this.product.fistHalf = selected_value;
+        this.firstHalf = selected_value;
         break;
       case 2:
-        //this.product.secondHalf = selected_value;
+        this.secondHalf = selected_value;
         break;
     }
-    console.log(this.product);
+
   }
 
   //this method adds a product to the order provider, then close the modal and shows a toast notification.
   addProduct() {
     if (this.isHalf) {
-      //  this.product.firstHalf = this.firstHalf.value;
-      // this.product.secondHalf = this.secondHalf.value;
+      this.product.name = this.firstHalf + " + " + this.secondHalf;
+      this.product.id = "99";
     }
-
     this.product.observation = this.observation.value;
     this.orderProv.addItem(this.product);
     this.closeModal();
@@ -207,6 +206,10 @@ export class ProductModalPage {
 
   //this method adds a product to the order provider, then close the modal and opens the menu page, finally it shows a toast notification
   onShowOrder() {
+    if (this.isHalf) {
+      this.product.name = this.firstHalf + " + " + this.secondHalf;
+      this.product.id = "99";
+    }
     this.orderProv.addItem(this.product);
     let toast = this.toastCtrl.create({
       message: 'Producto guardado con exito',

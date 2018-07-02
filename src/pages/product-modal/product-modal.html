@@ -25,7 +25,7 @@
 
       <ion-col *ngIf="isHalf" col-12>
         1# Mitad:
-        <select #firstHalf class="halfContainer" (change)="changeHalf($event.target.value,1)">
+        <select  class="halfContainer" (change)="changeHalf($event.target.value,1)">
           <option *ngFor='let pizza of halfList' [value]="pizza">
             {{pizza}}
           </option>
@@ -34,7 +34,7 @@
       </ion-col>
       <ion-col *ngIf="isHalf" col-12>
         2# Mitad:
-        <select #firstHalf class="halfContainer" (change)="changeHalf($event.target.value,2)">
+        <select  class="halfContainer" (change)="changeHalf($event.target.value,2)">
           <option *ngFor='let pizza of halfList' [value]="pizza">
             {{pizza}}
           </option>

@@ -25,7 +25,7 @@
         <ion-col col-8>
           <ion-row>
 
-            <ion-col col-8>
+            <ion-col col-12>
               {{item.name}}
             </ion-col>
 
@@ -34,16 +34,6 @@
             </ion-col>
 
           </ion-row>
-
-          <ion-row *ngIf="item.firstHalf != undefined">
-            <ion-col col-12>
-              1# Mitad {{item.firstHalf}}
-            </ion-col>
-            <ion-col col-12>
-              2# Mitad {{item.secondHalf}}
-            </ion-col>
-          </ion-row>
-
           <ion-row>
             <ion-col col-2>
               <ion-badge> {{item.size}}</ion-badge>

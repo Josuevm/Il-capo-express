@@ -51,6 +51,7 @@ export class OrderProvider {
         item selected orderItem
     */
     public removeItem(index) {
+      console.log( this.products[index])
         this.products.splice(index, 1);
     }
 
