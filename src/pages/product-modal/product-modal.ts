@@ -3,7 +3,7 @@ import { IonicPage, NavParams, ViewController, NavController } from 'ionic-angul
 import { OrderProvider } from "../../providers/order/order";
 import { Product } from '../../orderData';
 import { OrderPage } from '../order/order';
-
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 /**
  * Generated class for the ProductModalPage page.
  *
@@ -27,8 +27,17 @@ export class ProductModalPage {
   prices: any;
   thumbnail: string;
   selectedSize: string;
+  isPizza: boolean;
 
-
+  product: Product = {
+    id: '',
+    name: "",
+    size: "",
+    price: 0,
+    observation: "",
+    quantity: 1,
+    extras: []
+  }
 
   extras = [{ name: "chili", path: "../assets/imgs/chili.png" },
   { name: "cheese", path: "../assets/imgs/cheese.png" },
@@ -38,20 +47,11 @@ export class ProductModalPage {
   { name: "alba", path: "../assets/imgs/alba.png" }
   ];
 
-  product: Product = {
-    id: '',
-    name: "",
-    size: "P",
-    price: 0,
-    observation: "",
-    quantity: 1,
-    extras: []
-  }
-
   constructor(private navParams: NavParams,
     public orderProv: OrderProvider,
     private view: ViewController,
-    private navCtrl: NavController) {
+    private navCtrl: NavController,
+    private toastCtrl: ToastController) {
 
   }
 
@@ -59,6 +59,8 @@ export class ProductModalPage {
 
   }
 
+
+  //this method close the modal
   closeModal() {
     this.view.dismiss();
   }
@@ -66,16 +68,31 @@ export class ProductModalPage {
 
 
   ionViewDidLoad() {
+    console.log(this.navParams.get('data'));
+    //indica si es pizza, esto para la modificacion automatica del modal 
+    this.isPizza = this.navParams.get('isPizza');
+
+    if (this.isPizza) {
+      this.product.size = "P";
+      this.selectedSize = "P"
+      this.product.price = this.navParams.get('data').price[0];
+    } else {
+      this.product.price = this.navParams.get('data').price;
+    }
 
     this.information = this.navParams.get('data').description;
     this.product.name = this.navParams.get('data').name;
-    this.product.price = this.navParams.get('data').price[0];
     this.product.id = this.navParams.get('data').id;
     this.prices = this.navParams.get('data').price;
     //la imagen tiene que llegar por objeto
     this.thumbnail = "../assets/imgs/pizza.png";
   }
 
+
+
+  //This method receives a object that represetns one extra of the product, 
+  // then returns true if the product is contained in the extras array 
+  // false if its not  
   extraActive(extra) {
     let aux = this.product.extras.indexOf(extra);
     if (aux !== -1) {
@@ -85,6 +102,9 @@ export class ProductModalPage {
     }
   }
 
+  //This method receives a object that represetns one extra of the product
+  // then if the extra is contained in the extras array it will be deleted 
+  // if not the object will be pushed to the array 
   addExtra(extra) {
     let aux = this.product.extras.indexOf(extra);
     if (aux !== -1) {
@@ -95,8 +115,10 @@ export class ProductModalPage {
   }
 
 
+  //this method receives a string that represents the type of action (substraction or addition)
+  // if its an addition it will add +1 to the quantity of the product object 
+  // if its an additoin it will substract -1 to the quantity of the prodcut object 
   changeQuantity(Type) {
-    // por el momento tiene un CAP de 6 pizzas
 
     switch (Type) {
       case 0:
@@ -108,6 +130,9 @@ export class ProductModalPage {
     }
   }
 
+  //this method receives a string that represents the size of the product
+  // if will update the selectedSize and the size in the product object 
+  // then it will chanche the product size, in relation to the string itself
   changeSize(Size) {
     this.selectedSize = Size;
     this.product.size = Size;
@@ -127,16 +152,31 @@ export class ProductModalPage {
     }
   }
 
+  //this method adds a product to the order provider, then close the modal and shows a toast notification.
   addProduct() {
     this.product.observation = this.observation.value;
     this.orderProv.addItem(this.product);
     this.closeModal();
+    let toast = this.toastCtrl.create({
+      message: 'Producto guardado con exito',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 
+  //this method adds a product to the order provider, then close the modal and opens the menu page, finally it shows a toast notification
   onShowOrder() {
     this.orderProv.addItem(this.product);
+    let toast = this.toastCtrl.create({
+      message: 'Producto guardado con exito',
+      duration: 3000,
+      position: 'top'
+    });
     this.navCtrl.push(OrderPage);
     this.closeModal();
   }
+
+
 
 }
