@@ -34,12 +34,12 @@ export class ProductModalPage {
 
 
 
-  extras = [{ name: "chili", path: "assets/imgs/chili.png" },
-  { name: "cheese", path: "assets/imgs/cheese.png" },
-  { name: "mushroom", path: "assets/imgs/mushroom.png" },
-  { name: "onion", path: "assets/imgs/onion.png" },
-  { name: "sausage", path: "assets/imgs/sausage.png" },
-  { name: "alba", path: "assets/imgs/alba.png" }
+  extras = [{ name: "Chile", path: "assets/imgs/chili.png" },
+  { name: "Queso", path: "assets/imgs/cheese.png" },
+  { name: "Hongos", path: "assets/imgs/mushroom.png" },
+  { name: "Cebolla", path: "assets/imgs/onion.png" },
+  { name: "Salchicha", path: "assets/imgs/sausage.png" },
+  { name: "Alba", path: "assets/imgs/alba.png" }
   ];
   firstHalf: string;
   secondHalf: string;
