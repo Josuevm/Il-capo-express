@@ -109,7 +109,7 @@ export class ProductModalPage {
     this.product.id = this.navParams.get('data').id;
     this.prices = this.navParams.get('data').price;
     //la imagen tiene que llegar por objeto
-    this.thumbnail = "/assets/imgs/pizza.png";
+    this.thumbnail = "assets/imgs/half.png";
   }
 
 
